@@ -1,0 +1,17 @@
+*{
+    font-family: 'Lora'
+}
+
+.promotedTable{
+    margin-top: 5rem;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+
+html, body {
+    margin:0;
+    padding:0;
+    background-color: #d6dfe6;
+}

@@ -1,0 +1,14 @@
+.navbutton{
+    background-color: #9db5b2 !important;
+    border-color: #9db5b2 !important;
+}
+
+.navlink{
+    padding: 0 !important;
+    color: #444545 !important;
+}
+
+.navbutton:hover{
+    background-color: #739691 !important;
+    border-color: #739691 !important;
+}
