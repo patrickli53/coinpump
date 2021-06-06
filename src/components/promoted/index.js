@@ -1,40 +1,34 @@
 import React, { useState, Component, useEffect } from 'react'
-import Coin from './coin'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 import './styles.css'
+import PromotedRow from './PromotedRows';
 
 
 const Promoted = () => {
 
-    const [promotedCoin, setPromotedCoin] = useState([])
+    const [promotedCoins, setPromotedCoins] = useState([])
 
-    useEffect( () => {
-        
-        let temp = [];
-        
-        async function fetchData() {
-            await firestore.collection("Coins").get().then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.data());
-                    temp.push(doc.data());
-                });
-            })
-        }
+    
+    useEffect(() => {
         fetchData();
+    }, []);
+    
+    async function fetchData() {
+        await firestore.collection("Coins").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setPromotedCoins(promotedCoins => [...promotedCoins, doc.data()]);
+                console.log(doc.id, " => ", doc.data());
+            });
+        })
+    }
 
-        setPromotedCoin(temp);
-        console.log(temp);
-
-      }, []);
-
-
-
-
-
-
+    const renderPromoRows = () => {
+        console.log(promotedCoins)
+        return promotedCoins.map((doc, index)=>{
+            return <PromotedRow index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
+        })
+    }
     return (
         <div>
             <h2>
@@ -51,9 +45,7 @@ const Promoted = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {promotedCoin.map(coins => 
-                    <Coin name={coins.Name} marketCap={coins.MarketCap} age={coins.Date} />
-                    )}
+                    {renderPromoRows()}
                 </tbody>
             </Table>
         </div>
