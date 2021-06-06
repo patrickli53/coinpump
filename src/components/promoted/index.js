@@ -1,10 +1,40 @@
-import React from 'react'
+import React, { useState, Component, useEffect } from 'react'
+import Coin from './coin'
+import {auth, firestore, firebase} from '../config/fbConfig';
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import './styles.css'
 
 
 const Promoted = () => {
+
+    const [promotedCoin, setPromotedCoin] = useState([])
+
+    useEffect( () => {
+        
+        let temp = [];
+        
+        async function fetchData() {
+            await firestore.collection("Coins").get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.data());
+                    temp.push(doc.data());
+                });
+            })
+        }
+        fetchData();
+
+        setPromotedCoin(temp);
+        console.log(temp);
+
+      }, []);
+
+
+
+
+
+
     return (
         <div>
             <h2>
@@ -21,41 +51,9 @@ const Promoted = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td> 
-                        <Button className="voteButton">
-                            1000 
-                        </Button>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td> 
-                        <Button className="voteButton">
-                            1000 
-                        </Button>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    <td>Larry the Bird</td>
-                    <td>the Bird</td>
-                    <td> 
-                        @twitter
-                    </td>
-                    <td> 
-                        <Button className="voteButton">
-                            1000 
-                        </Button>
-                    </td>
-                    </tr>
+                {promotedCoin.map(coins => 
+                    <Coin name={coins.Name} marketCap={coins.MarketCap} age={coins.Date} />
+                    )}
                 </tbody>
             </Table>
         </div>
