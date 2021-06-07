@@ -31,17 +31,16 @@ const NavigationBar = () => {
                                 <FaPlus/> add coin
                             </Button>
                         </Link>
-                        <Button className="mr-4 navbutton">
-                            <Link  className='navlink' to="/promote">
+                        <Link  className='navlink' to="/promote">
+                            <Button className="mr-4 navbutton">
                                 <FaBullhorn/> promote
-                            </Link>
-                        </Button>
-                        <Button className="mr-4 navbutton">
-                            <Link  className='navlink' to="/login">
+                            </Button>
+                        </Link>
+                        <Link  className='navlink' to="/login">
+                            <Button className="mr-4 navbutton">
                                 <FaSignInAlt/> log In
-                            </Link>
-                        </Button>
-                       
+                            </Button>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

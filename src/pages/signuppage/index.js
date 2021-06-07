@@ -1,19 +1,19 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import LoginComponent from '../../components/logincomponent'
 import NavigationBar from '../../components/navbar'
+import SignUp from '../../components/signup'
 
-const Login = () => {
+const SignUpPage = () => {
     return (
         <div>
             <NavigationBar />       
             <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
                 <div className="w-100" style={{maxWidth:"400px"}}>
-                    <LoginComponent/>
+                    <SignUp/>
                 </div>
             </Container>     
         </div>
     )
 }
 
-export default Login
+export default SignUpPage
