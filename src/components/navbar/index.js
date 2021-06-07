@@ -37,7 +37,7 @@ const NavigationBar = () => {
                             </Link>
                         </Button>
                         <Button className="mr-4 navbutton">
-                            <Link  className='navlink' href="">
+                            <Link  className='navlink' to="/login">
                                 <FaSignInAlt/> log In
                             </Link>
                         </Button>

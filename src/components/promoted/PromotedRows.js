@@ -20,3 +20,4 @@ const PromotedRow = ({name, age, marketcap, votes,index}) => {
 }
 
 export default PromotedRow
+ 
