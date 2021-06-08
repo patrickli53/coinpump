@@ -56,7 +56,7 @@ const AddCoin = () => {
                         <Form.Control as="textarea" onChange={handleDescription} rows={3} />
                     </Form.Group>
                     <Form.Group controlId="logo">
-                        <Form.File id="formID" label="Logo"/>
+                        <Form.Control as="textarea" rows={1} />
                     </Form.Group>
                     <Form.Group controlId="price">
                         <Form.Label>Price</Form.Label>
