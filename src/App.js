@@ -10,18 +10,21 @@ import AddCoin from './pages/addcoin';
 import Promote from './pages/promote';
 import Login from './pages/login';
 import SignUpPage from './pages/signuppage';
+import { AuthProvider } from './contexts/AuthContext'
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path='/addcoin' component={AddCoin}/>
-        <Route path='/promote' component={Promote} />
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={SignUpPage}/>
-      </Switch>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path='/addcoin' component={AddCoin}/>
+          <Route path='/promote' component={Promote} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={SignUpPage}/>
+        </Switch>
+      </Router>
+    </AuthProvider>
   );
 }
 
