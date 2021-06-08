@@ -17,8 +17,10 @@ const Promoted = () => {
     async function fetchData() {
         await firestore.collection("Coins").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                setPromotedCoins(promotedCoins => [...promotedCoins, doc.data()]);
-                console.log(doc.id, " => ", doc.data());
+                if (doc.data().Promoted == true){
+                    setPromotedCoins(promotedCoins => [...promotedCoins, doc.data()]);
+                    console.log(doc.id, " => ", doc.data());
+                }
             });
         })
     }

@@ -12,6 +12,7 @@ const AddCoin = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [marketCap, setMarketCap] = useState('')
+    const [isPromoted, setIsPromoted] = useState('')
     
 
     function onChange(date) {
@@ -20,7 +21,7 @@ const AddCoin = () => {
 
 
     const handlePost = (event) => {
-        firestore.collection("Coins").add({ Name: name, Description: description, MarketCap: marketCap, Date: date});
+        firestore.collection("Coins").add({ Name: name, Description: description, MarketCap: marketCap, Date: date, Promoted: isPromoted});
     }
     const handleName = event => {
         setName(event.target.value)
@@ -30,6 +31,9 @@ const AddCoin = () => {
     }
     const handleMarketCap= event => {
         setMarketCap(event.target.value)
+    }
+    const handlePromoted = event => {
+        setIsPromoted(event.target.checked)
     }
    
 
@@ -52,8 +56,7 @@ const AddCoin = () => {
                         <Form.Control as="textarea" onChange={handleDescription} rows={3} />
                     </Form.Group>
                     <Form.Group controlId="logo">
-                        <Form.Label>Logo</Form.Label>
-                        <Form.Control as="textarea" rows={1} />
+                        <Form.File id="formID" label="Logo"/>
                     </Form.Group>
                     <Form.Group controlId="price">
                         <Form.Label>Price</Form.Label>
@@ -94,7 +97,7 @@ const AddCoin = () => {
                         <Form.Control as="textarea" rows={1} />
                     </Form.Group>
                     <Form.Group controlId="promotion">
-                        <Form.Check type="checkbox" label="Promoted Section" />
+                        <Form.Check type="checkbox" label="isPromoted" onChange={handlePromoted}/>
                     </Form.Group>
                 </Form>
             </div>
