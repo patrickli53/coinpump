@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Card, Alert} from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext.js'
+import { generateUserDocument } from '../config/fbConfig'
 
 const SignUp = () => { 
     const emailRef = useRef()
@@ -22,7 +23,11 @@ const SignUp = () => {
         try {
           setError("")
           setLoading(true)
-          await signup(emailRef.current.value, passwordRef.current.value)
+          await signup(emailRef.current.value, passwordRef.current.value).then((credential) => {
+              console.log('credential', credential);
+              const user = credential.user;
+              generateUserDocument(user)
+          })
           history.push("/")
         } catch {
           setError("Failed to create an account")

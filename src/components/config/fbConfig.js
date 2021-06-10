@@ -19,4 +19,33 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
+export const generateUserDocument = async (user) => {
+  const userRef = firestore.doc(`users/${user.uid}`);
+  const snapshot = userRef.get();
+  if (!snapshot.exists){
+    const { email } = user;
+    try {
+      await userRef.set({
+        email
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  return getUserDocument(user.uid)
+};
+
+const getUserDocument = async (uid) => {
+  if (!uid) return null;
+  try{
+    const userDocument = await firestore.doc(`users/${uid}`).get();
+    return {uid, ...userDocument.data()};
+  } catch(error) {
+      console.log(error);
+  }
+  }
+  
+
+
+
 export {auth, firestore, firebase};

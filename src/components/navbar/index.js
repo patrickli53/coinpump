@@ -6,8 +6,13 @@ import { FaPlus, FaBullhorn, FaSignInAlt } from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 import logo from '../../Logo_CoinPump.png'
 import './styles.css'
+import { useAuth } from '../../contexts/AuthContext'
 
 const NavigationBar = () => {
+    const { currentUser } = useAuth() 
+    
+    
+
     return (
         <>
             <Navbar bg="dark" variant="dark">
