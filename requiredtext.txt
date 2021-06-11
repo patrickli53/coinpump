@@ -1,0 +1,11 @@
+name
+symbol
+desc
+logo
+price
+market cap
+launch date
+one of network/chain
+contract address
+telegram
+contact email --> If you want to edit the coin in the future, send an email from this email.

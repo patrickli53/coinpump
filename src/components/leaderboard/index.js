@@ -2,7 +2,7 @@ import React, { useState, Component, useEffect } from 'react'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import Table from 'react-bootstrap/Table'
 import './styles.css'
-import PromotedRow from '../promoted/PromotedRows.js';
+import LeaderboardRow from './LeaderboardRow';
 
 const Leaderboard = () => {
 
@@ -15,18 +15,27 @@ const Leaderboard = () => {
     async function fetchData() {
         await firestore.collection("Coins").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                if (doc.data().Promoted == false){
-                    setLeaderboard(leaderboard => [...leaderboard, doc.data()]);
+                if (doc.data()){
+                    let coinData = doc.data();
+                    coinData.id = doc.id;
+                    setLeaderboard(leaderboard => [...leaderboard, coinData]);
                     console.log(doc.id, " => ", doc.data());
                 }
             });
+            
         })
     }
-
+    const sortByVotes = () => {
+        const sorted = [...leaderboard].sort((a, b) => {
+            return b.Votes - a.Votes;
+          });
+          console.log('srt')
+        setLeaderboard(sorted)
+    }
     const renderLeaderboardRows = () => {
         console.log(leaderboard)
         return leaderboard.map((doc, index)=>{
-            return <PromotedRow index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
+            return <LeaderboardRow sortByVotes={sortByVotes} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
         })
     }
 

@@ -3,7 +3,7 @@ import './styles.css'
 import Button from 'react-bootstrap/Button'
 import {auth, firestore, firebase} from '../config/fbConfig';
 
-const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
+const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) => {
     const [totalVotes, setVotes] = useState(votes)
     useEffect(() =>{
         updateVotes();
@@ -27,7 +27,7 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
                 <td>{marketcap}</td>
                 <td> {age}                </td>
                 <td> 
-                    <Button onClick={() => setVotes(totalVotes+1)}className="voteButton">
+                    <Button onClick={() => {setVotes(totalVotes+1); sortByVotes();}} className="voteButton">
                         {totalVotes}
                     </Button>
                 </td>
@@ -35,5 +35,5 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
     )
 }
 
-export default PromotedRow
+export default LeaderboardRow
  

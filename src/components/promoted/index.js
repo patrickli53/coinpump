@@ -8,7 +8,6 @@ import PromotedRow from './PromotedRows';
 const Promoted = () => {
 
     const [promotedCoins, setPromotedCoins] = useState([])
-
     
     useEffect(() => {
         fetchData();
@@ -18,8 +17,10 @@ const Promoted = () => {
         await firestore.collection("Coins").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 if (doc.data().Promoted == true){
-                    setPromotedCoins(promotedCoins => [...promotedCoins, doc.data()]);
-                    console.log(doc.id, " => ", doc.data());
+                    let coinData = doc.data();
+                    coinData.id = doc.id;
+                    setPromotedCoins(promotedCoins => [...promotedCoins, coinData]);
+                    console.log(doc.id, " => promo", doc.data());
                 }
             });
         })
@@ -28,7 +29,7 @@ const Promoted = () => {
     const renderPromoRows = () => {
         console.log(promotedCoins)
         return promotedCoins.map((doc, index)=>{
-            return <PromotedRow index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
+            return <PromotedRow id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
         })
     }
     return (
