@@ -12,9 +12,6 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
     const updateVotes = async() => {
         await firestore.collection("Coins").doc(id).update({
             Votes: totalVotes
-        }).then(()=>{
-            console.log("Votes: ", totalVotes);
-            sortByVotes();
         }).catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);

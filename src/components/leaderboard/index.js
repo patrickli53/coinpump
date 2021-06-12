@@ -7,37 +7,29 @@ import LeaderboardRow from './LeaderboardRow';
 const Leaderboard = () => {
 
     const [leaderboard, setLeaderboard] = useState([])
-
+    const [sortedLeaderboard, setSortedLeaderboard] = useState([])
     useEffect(() => {
         fetchData();
     }, []);
     
     async function fetchData() {
-        await firestore.collection("Coins").get().then((querySnapshot) => {
+        await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 if (doc.data().Promoted == false){
                     let coinData = doc.data();
                     coinData.id = doc.id;
                     setLeaderboard(leaderboard => [...leaderboard, coinData]);
-                    console.log(doc.id, " => ", doc.data());
+
                 }
             });
             
         })
     }
 
-    const sortByVotes = () => {
-        const sorted = [...leaderboard].sort((a, b) => {
-            return b.Votes - a.Votes;
-          });
-          console.log('srt')
-        setLeaderboard(sorted)
-    }
-
     const renderLeaderboardRows = () => {
-        console.log(leaderboard)
         return leaderboard.map((doc, index)=>{
-            return <LeaderboardRow sortByVotes={sortByVotes} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
+            console.log(doc.Votes + " " + doc.Name);
+            return <LeaderboardRow id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
         })
     }
 
