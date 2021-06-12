@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import './styles.css'
 import Button from 'react-bootstrap/Button'
 import {auth, firestore, firebase} from '../config/fbConfig';
+import {useAuth} from '../../contexts/AuthContext.js'
 
 const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
+    const userInformation = useAuth();
+
     const [totalVotes, setVotes] = useState(votes)
     useEffect(() =>{
         updateVotes();
@@ -17,9 +20,53 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
         }).catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
-        });
-        
+        });    
     }
+
+    // Updates time when user voted on database
+    const vote = async() => {
+        // Checks if user is logged in
+        if (userInformation.currentUser == null){
+            console.log("You must be logged in to vote")
+            return;
+        }
+
+        // Gets date of last from database
+        const doc = await firestore.collection("users").doc(userInformation.currentUser.uid).get();
+        var lastVoteDate = doc.data().tokens.[id];
+
+        // gets todays date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+
+        // TODO: Check that tokens map exists in user document
+
+        if (lastVoteDate){
+            // Allow vote if user has not voted today
+            if (lastVoteDate != today){
+                await firestore.collection("users").doc(userInformation.currentUser.uid).set({
+                    // Edits last vote date
+                    tokens: { [id]: today}
+                });
+                setVotes(totalVotes+1);
+            }else{
+                console.log("You can only vote once every 24 hours");
+            }
+
+        }else{
+            // If user has not voted yet, create a new entry for the token
+            await firestore.collection("users").doc(userInformation.currentUser.uid).set({
+                tokens: { [id]: today}
+            }, {merge: true}
+            );
+
+            setVotes(totalVotes+1);
+        }
+    }
+
     return (
              <tr>
                 <td>{index+1}</td>
@@ -27,7 +74,7 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
                 <td>{marketcap}</td>
                 <td> {age}                </td>
                 <td> 
-                    <Button onClick={() => setVotes(totalVotes+1)}className="voteButton">
+                    <Button onClick={() => { vote();}} className="voteButton">
                         {totalVotes}
                     </Button>
                 </td>

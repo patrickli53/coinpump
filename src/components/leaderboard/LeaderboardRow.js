@@ -31,8 +31,7 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
         }
 
         // Gets date of last from database
-        const info = firestore.collection("users").doc(userInformation.currentUser.uid);
-        const doc = await info.get();
+        const doc = await firestore.collection("users").doc(userInformation.currentUser.uid).get();
         var lastVoteDate = doc.data().tokens.[id];
 
         // gets todays date
@@ -42,15 +41,7 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
         var yyyy = today.getFullYear();
         today = mm + '/' + dd + '/' + yyyy;
 
-        if (doc != null){ // Need to check if tokens.id exists here *************
-            // Save lastVoteDate as Date variable to allow for date math
-            // lastVoteDate = new Date(doc.data().tokens.[id]);
-        }else{
-            // First time user has voted for token
-            await firestore.collection("users").doc(userInformation.currentUser.uid).set({
-                tokens: { [id]: today}
-            });
-        }
+        // TODO: Check that tokens map exists in user document
 
         if (lastVoteDate){
             // Allow vote if user has not voted today
