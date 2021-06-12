@@ -14,12 +14,14 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
             Votes: totalVotes
         }).then(()=>{
             console.log("Votes: ", totalVotes);
+            sortByVotes();
         }).catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
         });
         
     }
+
     return (
              <tr>
                 <td>{index+1}</td>
@@ -27,7 +29,7 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
                 <td>{marketcap}</td>
                 <td> {age}                </td>
                 <td> 
-                    <Button onClick={() => {setVotes(totalVotes+1); sortByVotes();}} className="voteButton">
+                    <Button onClick={() => {setVotes(totalVotes+1);}} className="voteButton">
                         {totalVotes}
                     </Button>
                 </td>

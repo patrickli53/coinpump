@@ -15,7 +15,7 @@ const Leaderboard = () => {
     async function fetchData() {
         await firestore.collection("Coins").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                if (doc.data()){
+                if (doc.data().Promoted == false){
                     let coinData = doc.data();
                     coinData.id = doc.id;
                     setLeaderboard(leaderboard => [...leaderboard, coinData]);
@@ -25,6 +25,7 @@ const Leaderboard = () => {
             
         })
     }
+
     const sortByVotes = () => {
         const sorted = [...leaderboard].sort((a, b) => {
             return b.Votes - a.Votes;
@@ -32,6 +33,7 @@ const Leaderboard = () => {
           console.log('srt')
         setLeaderboard(sorted)
     }
+
     const renderLeaderboardRows = () => {
         console.log(leaderboard)
         return leaderboard.map((doc, index)=>{
