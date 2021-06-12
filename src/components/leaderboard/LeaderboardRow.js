@@ -16,8 +16,6 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
     const updateVotes = async() => {
         await firestore.collection("Coins").doc(id).update({
             Votes: totalVotes
-        }).then(()=>{
-            console.log("Votes: ", totalVotes);
         }).catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
@@ -84,7 +82,7 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
                 <td>{marketcap}</td>
                 <td> {age}                </td>
                 <td> 
-                    <Button onClick={() => { vote(); sortByVotes();}} className="voteButton">
+                    <Button onClick={() => { vote();}} className="voteButton">
                         {totalVotes}
                     </Button>
                 </td>
