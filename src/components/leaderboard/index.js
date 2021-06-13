@@ -1,13 +1,14 @@
 import React, { useState, Component, useEffect } from 'react'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import Table from 'react-bootstrap/Table'
+import Alert from 'react-bootstrap/Alert'
+
 import './styles.css'
 import LeaderboardRow from './LeaderboardRow';
 
 const Leaderboard = () => {
 
     const [leaderboard, setLeaderboard] = useState([])
-    const [sortedLeaderboard, setSortedLeaderboard] = useState([])
     useEffect(() => {
         fetchData();
     }, []);
@@ -25,11 +26,10 @@ const Leaderboard = () => {
             
         })
     }
-
     const renderLeaderboardRows = () => {
         return leaderboard.map((doc, index)=>{
             console.log(doc.Votes + " " + doc.Name);
-            return <LeaderboardRow id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
+            return <LeaderboardRow alert={alert} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={doc.Date.seconds} votes={doc.Votes} />
         })
     }
 
@@ -38,6 +38,7 @@ const Leaderboard = () => {
             <h2>
                 Leaderboard
             </h2>
+           
             <Table borderless hover>
                 <thead>
                     <tr>

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 import Button from 'react-bootstrap/Button'
-import Alert from 'react-bootstrap/Alert'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 
-const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) => {
+const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
     const userInformation = useAuth();
 
     const [totalVotes, setVotes] = useState(votes)
+    const [show, setShow] = useState(false)
+    const [error, setError] = useState('') 
     useEffect(() =>{
         updateVotes();
     }, [totalVotes])
@@ -27,6 +30,8 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
         // Checks if user is logged in
         if (userInformation.currentUser == null){
             console.log("You must be logged in to vote")
+            setError("You must be logged in to vote.")
+            setShow(true)
             return;
         }
 
@@ -53,6 +58,8 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
                 setVotes(totalVotes+1);
             }else{
                 console.log("You can only vote once every 24 hours");
+                setError("You can only vote once every 24 hours.")
+                setShow(true)
             }
 
         }else{
@@ -65,7 +72,18 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
             setVotes(totalVotes+1);
         }
     }
-
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Content>
+            {error}
+          </Popover.Content>
+        </Popover>
+      );
+    const toggle = () => {
+        setInterval(() => {
+            setShow(false)
+          }, 3000)   
+    }
     return (
              <tr>
                 <td>{index+1}</td>
@@ -73,9 +91,11 @@ const LeaderboardRow = ({sortByVotes, id, name, age, marketcap, votes,index}) =>
                 <td>{marketcap}</td>
                 <td> {age}                </td>
                 <td> 
-                    <Button onClick={() => { vote();}} className="voteButton">
+                <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
+                    <Button onClick={() => {vote();}} className="voteButton">
                         {totalVotes}
                     </Button>
+                </OverlayTrigger>
                 </td>
             </tr>
     )

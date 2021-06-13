@@ -14,7 +14,7 @@ const Promoted = () => {
     }, []);
     
     async function fetchData() {
-        await firestore.collection("Coins").get().then((querySnapshot) => {
+        await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 if (doc.data().Promoted == true){
                     let coinData = doc.data();
