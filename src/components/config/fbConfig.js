@@ -26,7 +26,8 @@ export const generateUserDocument = async (user) => {
     const { email } = user;
     try {
       await userRef.set({
-        email
+        email,
+        tokens: {}
       });
     } catch (error) {
       console.log(error);
