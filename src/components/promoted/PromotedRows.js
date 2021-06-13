@@ -32,7 +32,6 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
     const vote = async() => {
         // Checks if user is logged in
         if (userInformation.currentUser == null){
-            console.log("You must be logged in to vote")
             setError("You must be logged in to vote.")
             setShow(true)
             return;
@@ -105,7 +104,7 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
                 <td>{index+1}</td>
                 <td>{name}</td>
                 <td>{marketcap}</td>
-                <td> {age}                </td>
+                <td> {age} days</td>
                 <td> 
                     <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
                         <Button onClick={() => {vote();}} className="voteButton">

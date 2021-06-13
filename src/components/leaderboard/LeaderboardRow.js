@@ -83,7 +83,7 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
             setVotes(totalVotes+1);
         }
     }
-    
+
     const popover = (
         <Popover id="popover-basic">
           <Popover.Content>
@@ -101,7 +101,7 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
                 <td>{index+1}</td>
                 <td>{name}</td>
                 <td>{marketcap}</td>
-                <td> {age}                </td>
+                <td> {age} days</td>
                 <td> 
                 <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
                     <Button onClick={() => {vote();}} className="voteButton">
