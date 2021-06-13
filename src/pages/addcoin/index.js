@@ -6,6 +6,8 @@ import ReactDatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { InputGroup, Container, Row, Col } from 'react-bootstrap'
 import {auth, firestore, firebase} from '../../components/config/fbConfig.js';
+import {Link} from 'react-router-dom';
+
 
 const AddCoin = () => {
     const [validated, setValidated] = useState(false);
@@ -13,9 +15,18 @@ const AddCoin = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [marketCap, setMarketCap] = useState('')
+    const [isPromoted, setIsPromoted] = useState('')
     const [symbol, setSymbol] = useState('')
-    const [logo, setLogo] = useState('')
     const [price, setPrice] = useState('')
+    const [solana, setSolana] = useState('')
+    const [BSC, setBSC] = useState('')
+    const [website, setWebsite] = useState('')
+    const [twitter, setTwitter] = useState('')
+    const [telegram, setTelegram] = useState('')
+    const [logo, setLogo] = useState('')
+    const [contractAddress, setContractAddress] = useState('')
+    const [contactEmail, setContactEmail] = useState('')
+    const [ethereum, setEthereum] = useState('')
 
     function onChange(date) {
         setDate(date);
@@ -35,7 +46,18 @@ const AddCoin = () => {
             Symbol: symbol, 
             Logo: logo, 
             Price: price,
+            BSC: BSC,
+            Solana: solana,
+            Website: website,
+            Twitter: twitter,
+            Telegram: telegram,
+            ContractAddress: contractAddress,
+            ContactEmail: contactEmail,
+            Ethereum: ethereum,
+
         });
+        
+
     }
     const handleName = event => {
         setName(event.target.value)
@@ -49,11 +71,35 @@ const AddCoin = () => {
     const handleSymbol = event => {
         setSymbol(event.target.value)
     }
+    const handleBSC = event => {
+        setBSC(event.target.value)
+    }
+    const handleWebsite = event => {
+        setWebsite(event.target.value)
+    }
+    const handleEthereum = event => {
+        setEthereum(event.target.value)
+    }
+    const handleSolana = event => {
+        setSolana(event.target.value)
+    }
     const handleLogo = event => {
         setLogo(event.target.value)
     }
     const handlePrice = event => {
         setPrice(event.target.value)
+    }
+    const handleTelegram = event => {
+        setTelegram(event.target.value)
+    }
+    const handleTwitter = event => {
+        setTwitter(event.target.value)
+    }
+    const handleContractAddress = event => {
+        setContractAddress(event.target.value)
+    }
+    const handleContactEmail = event => {
+        setContactEmail(event.target.value)
     }
    
 
@@ -103,14 +149,14 @@ const AddCoin = () => {
                             <Form.Group controlId="bsc">
                                 <Form.Label>Network/Chain</Form.Label>
                                 <div>
-                                    <Form.Check inline name='chain' label="Binance Smart Chain" type='radio' id='bsc'/>
-                                    <Form.Check inline name='chain' label="Ethereum" type='radio' id='eth'/>
-                                    <Form.Check inline name='chain' label="Solana" type='radio' id='sol'/>
+                                    <Form.Check inline name='chain' label="Binance Smart Chain" type='radio' id='bsc' onChange={handleBSC}/>
+                                    <Form.Check inline name='chain' label="Ethereum" type='radio' id='eth' onChange={handleEthereum}/>
+                                    <Form.Check inline name='chain' label="Solana" type='radio' id='sol' onChange={handleSolana}/>
                                 </div>
                             </Form.Group>
                             <Form.Group controlId="contractAddress">
                                 <Form.Label>Contract Address</Form.Label>
-                                <Form.Control as="textarea" rows={1} />
+                                <Form.Control as="textarea" rows={1} onChange={handleContractAddress}/>
                             </Form.Group>
                             {/* <Form.Group controlId="eth">
                                 <Form.Label>Ethereum</Form.Label>
@@ -122,19 +168,19 @@ const AddCoin = () => {
                             </Form.Group> */}
                             <Form.Group controlId="website">
                                 <Form.Label>Website</Form.Label>
-                                <Form.Control as="textarea" rows={1} />
+                                <Form.Control as="textarea" rows={1} onChange={handleWebsite}/>
                             </Form.Group>
                             <Form.Group controlId="telegram">
                                 <Form.Label>Telegram</Form.Label>
-                                <Form.Control as="textarea" rows={1} />
+                                <Form.Control as="textarea" rows={1} onChange={handleTelegram}/>
                             </Form.Group>
                             <Form.Group controlId="twitter">
                                 <Form.Label>Twitter</Form.Label>
-                                <Form.Control as="textarea" rows={1} />
+                                <Form.Control as="textarea" rows={1} onChange={handleTwitter}/>
                             </Form.Group>
-                            <Form.Group controlId="website">
+                            <Form.Group controlId="contactEmail">
                                 <Form.Label>Contact Email</Form.Label>
-                                <Form.Control as="email" rows={1} />
+                                <Form.Control as="email" rows={1} onChange={handleContactEmail}/>
                             </Form.Group>
                             <div>
                                 If you would like to make any changes to your coin information, or would like to contact us about promotion, send us an email from your specified contact email.
@@ -142,6 +188,7 @@ const AddCoin = () => {
                         </Col>    
                     </Row>
                 </Form>
+                
                 <button onClick={handlePost}>Submit</button>
             </Container>     
 

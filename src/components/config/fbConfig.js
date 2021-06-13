@@ -36,6 +36,8 @@ export const generateUserDocument = async (user) => {
   return getUserDocument(user.uid)
 };
 
+
+
 const getUserDocument = async (uid) => {
   if (!uid) return null;
   try{

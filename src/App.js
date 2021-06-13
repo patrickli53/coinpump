@@ -11,6 +11,7 @@ import Promote from './pages/promote';
 import Login from './pages/login';
 import SignUpPage from './pages/signuppage';
 import { AuthProvider } from './contexts/AuthContext'
+import emailSent from './pages/signuppage/emailSent'
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path='/promote' component={Promote} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUpPage}/>
+          <Route path='/verification' component={emailSent}/>
+
         </Switch>
       </Router>
     </AuthProvider>

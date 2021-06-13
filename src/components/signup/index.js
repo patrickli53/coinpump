@@ -1,8 +1,9 @@
+import { generateUserDocument, firebase, auth } from '../config/fbConfig'
 import React, { useRef, useState } from "react"
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Card, Alert} from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext.js'
-import { generateUserDocument } from '../config/fbConfig'
+
 
 const SignUp = () => { 
     const emailRef = useRef()
@@ -12,6 +13,16 @@ const SignUp = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
+
+    const verification = async () => {
+        var user = firebase.auth().currentUser;
+      
+        user.sendEmailVerification().then(function(){
+          window.alert("verified")
+        }).catch(function(error){
+          window.alert("error")
+        });
+      }
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -24,16 +35,19 @@ const SignUp = () => {
           setError("")
           setLoading(true)
           await signup(emailRef.current.value, passwordRef.current.value).then((credential) => {
-              console.log('credential', credential);
+              console.log('credential', credential);              
               const user = credential.user;
+              verification()
               generateUserDocument(user)
+              console.log('verified', user.isEmailVerified())
           })
-          history.push("/")
+         
         } catch {
           setError("Failed to create an account")
         }
-    //To Do: Route to home page after sign up
-    //To Do: Add email verification
+   
+
+
         setLoading(false)
       }
     
