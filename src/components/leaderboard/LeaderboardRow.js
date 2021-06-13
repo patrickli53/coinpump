@@ -37,6 +37,15 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
         
         // Gets date of last from database
         const doc = await firestore.collection("users").doc(userInformation.currentUser.uid).get();
+        
+        const emailVerified = await userInformation.currentUser.emailVerified;
+
+        // Checks if email is verified
+        if (!(emailVerified)){
+            setError("Your email must be verified to vote.");
+            setShow(true);
+            return;
+        }
 
         if (!doc.data().tokens){
             // token map does not exist, create it

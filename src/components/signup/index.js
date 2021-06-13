@@ -39,7 +39,6 @@ const SignUp = () => {
               const user = credential.user;
               verification()
               generateUserDocument(user)
-              console.log('verified', user.isEmailVerified())
           })
          
         } catch {
