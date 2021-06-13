@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 import Button from 'react-bootstrap/Button'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 
@@ -8,6 +10,9 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
     const userInformation = useAuth();
 
     const [totalVotes, setVotes] = useState(votes)
+    const [show, setShow] = useState(false)
+    const [error, setError] = useState('') 
+
     useEffect(() =>{
         updateVotes();
     }, [totalVotes])
@@ -28,11 +33,25 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
         // Checks if user is logged in
         if (userInformation.currentUser == null){
             console.log("You must be logged in to vote")
+            setError("You must be logged in to vote.")
+            setShow(true)
             return;
         }
-
+        
         // Gets date of last from database
         const doc = await firestore.collection("users").doc(userInformation.currentUser.uid).get();
+
+        if (!doc.data().tokens){
+            // token map does not exist, create it
+            await firestore.collection("users").doc(userInformation.currentUser.uid).set({
+                // Edits last vote date
+                tokens: {}
+            }, {merge: true}
+            );
+
+            console.log("[ERROR]: User did not have tokens map in document, map created");
+        }
+
         var lastVoteDate = doc.data().tokens.[id];
 
         // gets todays date
@@ -53,7 +72,8 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
                 });
                 setVotes(totalVotes+1);
             }else{
-                console.log("You can only vote once every 24 hours");
+                setError("You can only vote once every 24 hours.")
+                setShow(true)
             }
 
         }else{
@@ -67,6 +87,19 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
         }
     }
 
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Content>
+            {error}
+          </Popover.Content>
+        </Popover>
+      );
+    const toggle = () => {
+        setInterval(() => {
+            setShow(false)
+          }, 3000)   
+    }
+
     return (
              <tr>
                 <td>{index+1}</td>
@@ -74,9 +107,11 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
                 <td>{marketcap}</td>
                 <td> {age}                </td>
                 <td> 
-                    <Button onClick={() => { vote();}} className="voteButton">
-                        {totalVotes}
-                    </Button>
+                    <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
+                        <Button onClick={() => {vote();}} className="voteButton">
+                            {totalVotes}
+                        </Button>
+                    </OverlayTrigger>
                 </td>
             </tr>
     )

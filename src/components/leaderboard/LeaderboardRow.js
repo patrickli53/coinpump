@@ -34,9 +34,21 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
             setShow(true)
             return;
         }
-
+        
         // Gets date of last from database
         const doc = await firestore.collection("users").doc(userInformation.currentUser.uid).get();
+
+        if (!doc.data().tokens){
+            // token map does not exist, create it
+            await firestore.collection("users").doc(userInformation.currentUser.uid).set({
+                // Edits last vote date
+                tokens: {}
+            }, {merge: true}
+            );
+
+            console.log("[ERROR]: User did not have tokens map in document, map created");
+        }
+
         var lastVoteDate = doc.data().tokens.[id];
 
         // gets todays date
@@ -57,7 +69,6 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
                 });
                 setVotes(totalVotes+1);
             }else{
-                console.log("You can only vote once every 24 hours");
                 setError("You can only vote once every 24 hours.")
                 setShow(true)
             }
@@ -72,6 +83,7 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
             setVotes(totalVotes+1);
         }
     }
+    
     const popover = (
         <Popover id="popover-basic">
           <Popover.Content>
