@@ -16,7 +16,7 @@ const Leaderboard = () => {
     async function fetchData() {
         await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                if (doc.data().Promoted == false){
+                if (doc.data().Promoted == false && doc.data().Approved == true){
                     let coinData = doc.data();
                     coinData.id = doc.id;
                     setLeaderboard(leaderboard => [...leaderboard, coinData]);
@@ -29,9 +29,7 @@ const Leaderboard = () => {
     const renderLeaderboardRows = () => {
         return leaderboard.map((doc, index)=>{
             // Adds coin only if its approved by admin
-            if (doc.Approved == true){
                 return <LeaderboardRow alert={alert} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(2)} votes={doc.Votes} />
-            }
         })
     }
 
