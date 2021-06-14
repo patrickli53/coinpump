@@ -54,7 +54,7 @@ const AddCoin = () => {
             ContractAddress: contractAddress,
             ContactEmail: contactEmail,
             Ethereum: ethereum,
-
+            Approved: false
         });
         
 
@@ -140,7 +140,7 @@ const AddCoin = () => {
                             <Form.Group controlId="launchdate">
                                 <Form.Label>Launch Date</Form.Label>
                                 <InputGroup>
-                                    <ReactDatePicker selected={date}/>
+                                    <ReactDatePicker selected={date} onChange={(date) => setDate(date)} />
                                 </InputGroup>
                             </Form.Group>
                         </Col>

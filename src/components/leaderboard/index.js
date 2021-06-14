@@ -28,9 +28,10 @@ const Leaderboard = () => {
     }
     const renderLeaderboardRows = () => {
         return leaderboard.map((doc, index)=>{
-            // console.log(doc.Votes + " " + doc.Name);
-            return <LeaderboardRow alert={alert} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(2)} votes={doc.Votes} />
-    
+            // Adds coin only if its approved by admin
+            if (doc.Approved == true){
+                return <LeaderboardRow alert={alert} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(2)} votes={doc.Votes} />
+            }
         })
     }
 
