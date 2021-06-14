@@ -1,16 +1,29 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { generateUserDocument, firebase, auth } from '../../components/config/fbConfig'
+import { useAuth } from '../../contexts/AuthContext.js'
 import NavigationBar from '../../components/navbar'
-import SignUp from '../../components/signup'
 
-const emailSent = () => {
+
+const Promote = () => {
+
+    const verification = async () => {
+        var user = firebase.auth().currentUser;
+      
+        user.sendEmailVerification().then(function(){
+          window.alert("email sent successfully")
+        }).catch(function(error){
+          window.alert(error)
+        });
+      }
+
+
     return (
         <div>
-            <h>Check inbox for email sent</h>
-            <p>if you havent recieved the email click button:</p>
-            <button>Resend Email</button>
+            <NavigationBar/>
+            <h>Please check inbox.</h>
+            <button onClick={verification}>Resend</button>
         </div>
     )
 }
 
-export default emailSent
+export default Promote

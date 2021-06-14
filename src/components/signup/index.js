@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react"
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Card, Alert} from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext.js'
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 const SignUp = () => { 
@@ -13,18 +14,42 @@ const SignUp = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
+    const [notBot, setNotBot] = useState(false)
+
+    
+    const recaptchaRef = React.createRef();
+    
+    const notABot = event => {
+        setNotBot(true)
+    }
+    
+    
+    //  ReactDOM.render(
+    //     <ReCAPTCHA
+    //       sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
+    //       onChange={setNotBot(true)}
+    //     />,
+    //     document.body
+    //    );
+
 
     const verification = async () => {
         var user = firebase.auth().currentUser;
       
         user.sendEmailVerification().then(function(){
-          window.alert("verified")
+          window.alert("wmail sent successfully")
         }).catch(function(error){
           window.alert("error")
         });
       }
 
     async function handleSubmit(e) {
+
+        if(!notBot){
+            setError("Please check CAPTCHA")
+            return
+        }
+
         e.preventDefault()
     
         if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
@@ -37,10 +62,10 @@ const SignUp = () => {
           await signup(emailRef.current.value, passwordRef.current.value).then((credential) => {
               console.log('credential', credential);              
               const user = credential.user;
-              verification()
+              verification() //sends the email verification
               generateUserDocument(user)
           })
-         
+          history.push("/verification")
         } catch {
           setError("Failed to create an account")
         }
@@ -71,6 +96,14 @@ const SignUp = () => {
                             <Form.Label>Password Confirmation</Form.Label>
                             <Form.Control type="password" ref={passwordConfirmationRef} required/>
                         </Form.Group>
+                        
+                            <ReCAPTCHA
+                            ref={recaptchaRef}
+                            sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
+                            render="explicit"
+                            onChange={notABot}
+                            />
+                        
                         <Button disabled={loading} className="w-100" type="submit"> Sign Up</Button>
                     </Form>
                 </Card.Body>
