@@ -12,6 +12,7 @@ import Login from './pages/login';
 import SignUpPage from './pages/signuppage';
 import { AuthProvider } from './contexts/AuthContext'
 import emailSent from './pages/signuppage/emailSent'
+import passwordReset from './pages/login/resetPassword'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUpPage}/>
           <Route path='/verification' component={emailSent}/>
+          <Route path='/resetPassword' component={passwordReset}/>
 
         </Switch>
       </Router>
