@@ -54,7 +54,7 @@ const AddCoin = () => {
             ContractAddress: contractAddress,
             ContactEmail: contactEmail,
             Ethereum: ethereum,
-
+            Approved: false
         });
         
 
