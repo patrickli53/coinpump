@@ -180,7 +180,7 @@ const AddCoin = () => {
                             </Form.Group>
                             <Form.Group controlId="contactEmail">
                                 <Form.Label>Contact Email</Form.Label>
-                                <Form.Control as="email" rows={1} onChange={handleContactEmail}/>
+                                <Form.Control as="textarea" rows={1} onChange={handleContactEmail}/>
                             </Form.Group>
                             <div>
                                 If you would like to make any changes to your coin information, or would like to contact us about promotion, send us an email from your specified contact email.

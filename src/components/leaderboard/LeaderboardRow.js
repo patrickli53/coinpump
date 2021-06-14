@@ -5,13 +5,17 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
+import CoinInfo from '../CoinInfo'
 
 const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
     const userInformation = useAuth();
-
+  
     const [totalVotes, setVotes] = useState(votes)
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
+    const [showModal, setShowModal] = useState(false)
+
+   
     useEffect(() =>{
         updateVotes();
     }, [totalVotes])
@@ -92,6 +96,8 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
             setVotes(totalVotes+1);
         }
     }
+    const handleClose = () => setShowModal(false);
+    const handleShow = () => setShowModal(true);
 
     const popover = (
         <Popover id="popover-basic">
@@ -105,8 +111,10 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
             setShow(false)
           }, 3000)   
     }
+    
     return (
-             <tr>
+        <>
+             <tr onClick={handleShow}>
                 <td>{index+1}</td>
                 <td>{name}</td>
                 <td>{marketcap}</td>
@@ -119,6 +127,8 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
                 </OverlayTrigger>
                 </td>
             </tr>
+            <CoinInfo show={showModal} onClose={handleClose} />
+        </>
     )
 }
 
