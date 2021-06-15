@@ -6,10 +6,11 @@ import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 
-const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
+const PromotedRow = ({id, name, age, marketcap, votes, weeklyVotes, index}) => {
     const userInformation = useAuth();
 
     const [totalVotes, setVotes] = useState(votes)
+    const [totalWeeklyVotes, setWeeklyVotes] = useState(weeklyVotes)
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
 
@@ -19,7 +20,8 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
 
     const updateVotes = async() => {
         await firestore.collection("Coins").doc(id).update({
-            Votes: totalVotes
+            Votes: totalVotes,
+            WeeklyVotes: totalWeeklyVotes
         }).then(()=>{
             console.log("Votes: ", totalVotes);
         }).catch((error) => {
@@ -79,6 +81,7 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
                     tokens: { [id]: today}
                 });
                 setVotes(totalVotes+1);
+                setWeeklyVotes(totalWeeklyVotes+1);
             }else{
                 setError("You can only vote once every 24 hours.")
                 setShow(true)
@@ -92,6 +95,7 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
             );
 
             setVotes(totalVotes+1);
+            setWeeklyVotes(totalWeeklyVotes+1);
         }
     }
 

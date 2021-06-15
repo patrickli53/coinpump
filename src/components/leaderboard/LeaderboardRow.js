@@ -7,22 +7,32 @@ import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 import CoinInfo from '../CoinInfo'
 
-const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
+const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, index }) => {
     const userInformation = useAuth();
   
     const [totalVotes, setVotes] = useState(votes)
+    const [totalWeeklyVotes, setWeeklyVotes] = useState(weeklyVotes)
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
     const [showModal, setShowModal] = useState(false)
 
-   
+      // Observes vote field for live update 
+    // const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
+    //     console.log('Received doc snapshot');
+    //     console.log(docSnapshot.data().Votes);
+    //     setVotes(docSnapshot.data().Votes)
+    // }, err => {
+    //     console.log('Observer error: ${err}');
+    // });
+
     useEffect(() =>{
         updateVotes();
     }, [totalVotes])
 
     const updateVotes = async() => {
         await firestore.collection("Coins").doc(id).update({
-            Votes: totalVotes
+            Votes: totalVotes,
+            WeeklyVotes: totalWeeklyVotes
         }).catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
@@ -81,6 +91,7 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
                     tokens: { [id]: today}
                 });
                 setVotes(totalVotes+1);
+                setWeeklyVotes(totalWeeklyVotes+1);
             }else{
                 setError("You can only vote once every 24 hours.")
                 setShow(true)
@@ -94,6 +105,7 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
             );
 
             setVotes(totalVotes+1);
+            setWeeklyVotes(totalWeeklyVotes+1);
         }
     }
     const handleClose = () => setShowModal(false);

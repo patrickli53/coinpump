@@ -33,8 +33,6 @@ const AddCoin = () => {
         setDate(date);
     }
     
-
-
     const handlePost = (event) => {
         
         firestore.collection("Coins").add({ 
@@ -44,6 +42,7 @@ const AddCoin = () => {
             Date: date, 
             Promoted: false, 
             Votes: 0, 
+            WeeklyVotes: 0,
             Symbol: symbol, 
             Logo: logo, 
             Price: price,
