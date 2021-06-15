@@ -18,7 +18,9 @@ const LoginComponent = () => {
             setLoading(true)
             await auth.signInWithPopup(google).then((credential) => {              
                 const user = credential.user;
+                
                 generateUserDocument(user)
+                 
             })
             history.push("/")
           } catch {

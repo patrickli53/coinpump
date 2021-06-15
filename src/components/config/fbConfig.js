@@ -22,7 +22,9 @@ const google = new firebase.auth.GoogleAuthProvider();
 
 export const generateUserDocument = async (user) => {
   const userRef = firestore.doc(`users/${user.uid}`);
-  const snapshot = userRef.get();
+  const snapshot =  await userRef.get();
+  console.log("omar" , snapshot)
+
   if (!snapshot.exists){
     const { email } = user;
     try {

@@ -11,7 +11,6 @@ import { useAuth} from '../../contexts/AuthContext'
 const NavigationBar = () => {
     const { currentUser, logout } = useAuth() 
     const logInButton = () => {
-        console.log(currentUser)
         if (currentUser){
             return (<Link  className='navlink' to="/">
             <Button onClick={logout} className="mr-4 navbutton">
