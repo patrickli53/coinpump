@@ -18,6 +18,7 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+const google = new firebase.auth.GoogleAuthProvider();
 
 export const generateUserDocument = async (user) => {
   const userRef = firestore.doc(`users/${user.uid}`);
@@ -51,4 +52,4 @@ const getUserDocument = async (uid) => {
 
 
 
-export {auth, firestore, firebase};
+export {auth, firestore, firebase, google};

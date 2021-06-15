@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext'
+import { firebase, auth, google, generateUserDocument } from '../config/fbConfig'
 
 const LoginComponent = () => {
     const emailRef = useRef()
@@ -10,6 +11,24 @@ const LoginComponent = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const history = useHistory()
+
+    async function trySignInWithGoogle(){
+        try {
+            setError("")
+            setLoading(true)
+            await auth.signInWithPopup(google).then((credential) => {              
+                const user = credential.user;
+                generateUserDocument(user)
+            })
+            history.push("/")
+          } catch {
+            setError("Failed to create an account")
+          }
+      };
+
+
+    
+
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -50,6 +69,7 @@ const LoginComponent = () => {
             <div className="w-100 text-center mt-2">
                 Don't have an account? <Link to='/signup'>Sign up!</Link>
             </div>
+            <Button disabled={loading} className="w-100" onClick={trySignInWithGoogle}> Sign in with Google</Button>
         </>
     )
 }

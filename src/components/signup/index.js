@@ -37,9 +37,9 @@ const SignUp = () => {
         var user = firebase.auth().currentUser;
       
         user.sendEmailVerification().then(function(){
-          window.alert("wmail sent successfully")
+          
         }).catch(function(error){
-          window.alert("error")
+          console.log(error)
         });
       }
 

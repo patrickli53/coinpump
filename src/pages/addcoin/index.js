@@ -18,15 +18,16 @@ const AddCoin = () => {
     const [isPromoted, setIsPromoted] = useState('')
     const [symbol, setSymbol] = useState('')
     const [price, setPrice] = useState('')
-    const [solana, setSolana] = useState('')
-    const [BSC, setBSC] = useState('')
+    const [solana, setSolana] = useState(false)
+    const [BSC, setBSC] = useState(false)
     const [website, setWebsite] = useState('')
     const [twitter, setTwitter] = useState('')
     const [telegram, setTelegram] = useState('')
     const [logo, setLogo] = useState('')
     const [contractAddress, setContractAddress] = useState('')
     const [contactEmail, setContactEmail] = useState('')
-    const [ethereum, setEthereum] = useState('')
+    const [ethereum, setEthereum] = useState(false)
+    
 
     function onChange(date) {
         setDate(date);
@@ -55,6 +56,7 @@ const AddCoin = () => {
             ContactEmail: contactEmail,
             Ethereum: ethereum,
             Approved: false
+
         });
         
 
@@ -101,7 +103,7 @@ const AddCoin = () => {
     const handleContactEmail = event => {
         setContactEmail(event.target.value)
     }
-   
+ 
 
 
     return (
@@ -140,7 +142,7 @@ const AddCoin = () => {
                             <Form.Group controlId="launchdate">
                                 <Form.Label>Launch Date</Form.Label>
                                 <InputGroup>
-                                    <ReactDatePicker selected={date} onChange={(date) => setDate(date)} />
+                                <ReactDatePicker selected={date} onChange={(date) => setDate(date)} />
                                 </InputGroup>
                             </Form.Group>
                         </Col>
