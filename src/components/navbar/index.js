@@ -39,8 +39,11 @@ const NavigationBar = () => {
                             height="30"
                             className="d-inline-block align-top"
                         />{' '}
-                        coinpump
+                        coingalaxy
                         </Navbar.Brand>
+                    </Link>
+                    <Link to ="/coingalaxytoken">
+                        CoinGalaxy Price: $3.92
                     </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
