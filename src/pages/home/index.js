@@ -2,6 +2,7 @@ import React from 'react'
 import Leaderboard from '../../components/leaderboard';
 import NavigationBar from '../../components/navbar';
 import Promoted from '../../components/promoted';
+import LeaderboardWithTabs from '../../components/LeaderboardWithTabs';
 import './styles.css';
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
                 <Promoted />
             </div>
             <div className="promotedTable">
-                <Leaderboard />
+                <LeaderboardWithTabs />
             </div>
             
         </div>

@@ -6,26 +6,37 @@ import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 
-const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
+const PromotedRow = ({id, name, age, marketcap, votes, weeklyVotes, index}) => {
     const userInformation = useAuth();
 
     const [totalVotes, setVotes] = useState(votes)
+    const [totalWeeklyVotes, setWeeklyVotes] = useState(weeklyVotes)
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
 
+    // Observes vote field for live update 
+    const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
+        setVotes(docSnapshot.data().Votes)
+    }, err => {
+        console.log('Observer error: ${err}');
+    });
+        
+    const increment = firebase.firestore.FieldValue.increment(1);
+    
     useEffect(() =>{
-        updateVotes();
+        
     }, [totalVotes])
 
-    const updateVotes = async() => {
+
+    // Increments votes by 1 on server
+    const incrementVotes = async() => {
         await firestore.collection("Coins").doc(id).update({
-            Votes: totalVotes
-        }).then(()=>{
-            console.log("Votes: ", totalVotes);
+            Votes: increment,
+            WeeklyVotes: increment
         }).catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
-        });    
+        });
     }
 
     // Updates time when user voted on database
@@ -79,6 +90,8 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
                     tokens: { [id]: today}
                 });
                 setVotes(totalVotes+1);
+                setWeeklyVotes(totalWeeklyVotes+1);
+                incrementVotes()
             }else{
                 setError("You can only vote once every 24 hours.")
                 setShow(true)
@@ -92,6 +105,8 @@ const PromotedRow = ({id, name, age, marketcap, votes,index}) => {
             );
 
             setVotes(totalVotes+1);
+            setWeeklyVotes(totalWeeklyVotes+1);
+            incrementVotes()
         }
     }
 

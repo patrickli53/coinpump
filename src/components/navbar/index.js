@@ -11,7 +11,6 @@ import { useAuth} from '../../contexts/AuthContext'
 const NavigationBar = () => {
     const { currentUser, logout } = useAuth() 
     const logInButton = () => {
-        console.log(currentUser)
         if (currentUser){
             return (<Link  className='navlink' to="/">
             <Button onClick={logout} className="mr-4 navbutton">
@@ -40,10 +39,12 @@ const NavigationBar = () => {
                             height="30"
                             className="d-inline-block align-top"
                         />{' '}
-                        coinpump
+                        coingalaxy
                         </Navbar.Brand>
-                </Link>
-                
+                    </Link>
+                    <Link to ="/coingalaxytoken">
+                        CoinGalaxy Price: $3.92
+                    </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">

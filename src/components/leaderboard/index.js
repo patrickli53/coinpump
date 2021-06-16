@@ -6,42 +6,48 @@ import Alert from 'react-bootstrap/Alert'
 import './styles.css'
 import LeaderboardRow from './LeaderboardRow';
 
-const Leaderboard = () => {
-
+const Leaderboard = ({sortMethod}) => {
     const [leaderboard, setLeaderboard] = useState([])
+
     useEffect(() => {
         fetchData();
     }, []);
     
     async function fetchData() {
-        await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                if (doc.data().Promoted == false){
-                    let coinData = doc.data();
-                    coinData.id = doc.id;
-                    setLeaderboard(leaderboard => [...leaderboard, coinData]);
+        console.log(sortMethod)
+        if (sortMethod == "weekly"){
+            await firestore.collection("Coins").orderBy("WeeklyVotes", "desc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().Promoted == false && doc.data().Approved == true){
+                        let coinData = doc.data();
+                        coinData.id = doc.id;
+                        setLeaderboard(leaderboard => [...leaderboard, coinData]);
 
-                }
-            });
-            
-        })
+                    }
+                });
+            })
+        }else{
+            await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().Promoted == false && doc.data().Approved == true){
+                        let coinData = doc.data();
+                        coinData.id = doc.id;
+                        setLeaderboard(leaderboard => [...leaderboard, coinData]);
+                    }
+                });
+            })
+        }
     }
     const renderLeaderboardRows = () => {
         return leaderboard.map((doc, index)=>{
             // Adds coin only if its approved by admin
-            if (doc.Approved == true){
-                return <LeaderboardRow alert={alert} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(2)} votes={doc.Votes} />
-            }
+                return <LeaderboardRow alert={alert} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} votes={doc.Votes}  weeklyVotes={doc.WeeklyVotes}/>
         })
     }
 
     return (
-        <div>
-            <h2>
-                Leaderboard
-            </h2>
-           
-            <Table striped borderless hover>
+        <div>   
+            <Table borderless hover>
                 <thead>
                     <tr>
                     <th>#</th>
