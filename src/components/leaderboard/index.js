@@ -41,7 +41,7 @@ const Leaderboard = () => {
                 Leaderboard
             </h2>
            
-            <Table borderless hover>
+            <Table striped borderless hover>
                 <thead>
                     <tr>
                     <th>#</th>

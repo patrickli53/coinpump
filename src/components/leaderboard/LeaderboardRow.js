@@ -13,7 +13,6 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
     const [totalVotes, setVotes] = useState(votes)
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
-    const [showModal, setShowModal] = useState(false)
 
    
     useEffect(() =>{
@@ -96,8 +95,6 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
             setVotes(totalVotes+1);
         }
     }
-    const handleClose = () => setShowModal(false);
-    const handleShow = () => setShowModal(true);
 
     const popover = (
         <Popover id="popover-basic">
@@ -114,7 +111,7 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
     
     return (
         <>
-             <tr onClick={handleShow}>
+             <tr>
                 <td>{index+1}</td>
                 <td>{name}</td>
                 <td>{marketcap}</td>
@@ -127,7 +124,6 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes,index}) => {
                 </OverlayTrigger>
                 </td>
             </tr>
-            <CoinInfo show={showModal} onClose={handleClose} />
         </>
     )
 }
