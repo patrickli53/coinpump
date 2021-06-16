@@ -6,25 +6,37 @@ import Alert from 'react-bootstrap/Alert'
 import './styles.css'
 import LeaderboardRow from './LeaderboardRow';
 
-const Leaderboard = () => {
-
+const Leaderboard = ({sortMethod}) => {
     const [leaderboard, setLeaderboard] = useState([])
+
     useEffect(() => {
         fetchData();
     }, []);
     
     async function fetchData() {
-        await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                if (doc.data().Promoted == false && doc.data().Approved == true){
-                    let coinData = doc.data();
-                    coinData.id = doc.id;
-                    setLeaderboard(leaderboard => [...leaderboard, coinData]);
+        console.log(sortMethod)
+        if (sortMethod == "weekly"){
+            await firestore.collection("Coins").orderBy("WeeklyVotes", "desc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().Promoted == false && doc.data().Approved == true){
+                        let coinData = doc.data();
+                        coinData.id = doc.id;
+                        setLeaderboard(leaderboard => [...leaderboard, coinData]);
 
-                }
-            });
-            
-        })
+                    }
+                });
+            })
+        }else{
+            await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().Promoted == false && doc.data().Approved == true){
+                        let coinData = doc.data();
+                        coinData.id = doc.id;
+                        setLeaderboard(leaderboard => [...leaderboard, coinData]);
+                    }
+                });
+            })
+        }
     }
     const renderLeaderboardRows = () => {
         return leaderboard.map((doc, index)=>{
@@ -34,11 +46,7 @@ const Leaderboard = () => {
     }
 
     return (
-        <div>
-            <h2>
-                Leaderboard
-            </h2>
-           
+        <div>   
             <Table borderless hover>
                 <thead>
                     <tr>
