@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { firebase, firestore } from '../config/fbConfig'
@@ -13,25 +13,34 @@ import Select from 'react-dropdown-select'
 const NavigationBar = () => {
     const { currentUser, logout } = useAuth()
     const [ coins, setCoins ] = useState([])
+    const [ selectedCoinUrl, setSelectedCoinUrl ] = useState()
 
-    console.log("hello")
+    useEffect(() => {
+        fetchData();
+    }, []);
 
      async function fetchData() {
          let temp = []
-         console.log("hello")
+        
          await firestore.collection("Coins").get().then((querySnapshot) => {
              querySnapshot.forEach((doc) => {
                     var coinName = doc.data().Name;
                     var id = doc.id;
                     temp = [...temp, {"Name" : coinName, "ID" : id}]
-                 
              });
              setCoins(temp)
-             console.log(coins)
          })
      }
-
     
+     function searchSelect(id){
+        setSelectedCoinUrl(`/${id}`)
+        
+        if (selectedCoinUrl == undefined){
+            return;
+        }
+
+        // Put code here to redirect to coin page
+     }
 
     const logInButton = () => {
         if (currentUser){
@@ -75,7 +84,7 @@ const NavigationBar = () => {
                             options={coins}
                             labelField = "Name"
                             searchBy = "Name"
-                            onChange={fetchData}
+                            onChange={(values) => searchSelect(values[0].ID)}
                         />
                         <Link className='navlink' to="/addcoin">
                             <Button className="mr-4 navbutton">
