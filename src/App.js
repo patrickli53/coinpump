@@ -18,6 +18,7 @@ import CoinGalaxyToken from './pages/CoinGalaxyToken'
 import CoinPage from './pages/CoinPage';
 
 function App() {
+  console.log("omar")
   return (
     <AuthProvider>
       <Router>

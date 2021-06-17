@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext.js'
 import NavigationBar from '../../components/navbar'
 
 
-const Promote = () => {
+const emailSent = () => {
 
     const verification = async () => {
         var user = firebase.auth().currentUser;
@@ -26,4 +26,4 @@ const Promote = () => {
     )
 }
 
-export default Promote
+export default emailSent
