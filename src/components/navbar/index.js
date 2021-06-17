@@ -32,12 +32,14 @@ const NavigationBar = () => {
          })
      }
     
-     function searchSelect(id){
-        setSelectedCoinUrl(`/${id}`)
-        
-        if (selectedCoinUrl == undefined){
-            return;
-        }
+     function searchSelect(value){
+         if (value[0]){
+            setSelectedCoinUrl(`/${value[0].ID}`)
+            
+            if (selectedCoinUrl == undefined){
+                return;
+            }
+         }
 
         // Put code here to redirect to coin page
      }
@@ -84,7 +86,7 @@ const NavigationBar = () => {
                             options={coins}
                             labelField = "Name"
                             searchBy = "Name"
-                            onChange={(values) => searchSelect(values[0].ID)}
+                            onChange={(values) => searchSelect(values)}
                         />
                         <Link className='navlink' to="/addcoin">
                             <Button className="mr-4 navbutton">
