@@ -15,6 +15,7 @@ import emailSent from './pages/signuppage/emailSent'
 import passwordReset from './pages/login/resetPassword'
 import TermsOfService from './pages/terms'
 import CoinGalaxyToken from './pages/CoinGalaxyToken'
+import CoinPage from './pages/CoinPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/verification' component={emailSent}/>
           <Route path='/resetPassword' component={passwordReset}/>
           <Route path='/coingalaxytoken' component={CoinGalaxyToken}/>
+          <Route path="/coin/:coinId" component={CoinPage}/>
 
         </Switch>
       </Router>

@@ -41,7 +41,18 @@ const Leaderboard = ({sortMethod}) => {
     const renderLeaderboardRows = () => {
         return leaderboard.map((doc, index)=>{
             // Adds coin only if its approved by admin
-                return <LeaderboardRow alert={alert} id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} votes={doc.Votes}  weeklyVotes={doc.WeeklyVotes}/>
+                return (
+                    
+                    <LeaderboardRow 
+                        alert={alert} 
+                        id={doc.id} 
+                        index={index} 
+                        name={doc.Name} 
+                        marketcap={doc.MarketCap} 
+                        age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} 
+                        votes={doc.Votes}  weeklyVotes={doc.WeeklyVotes}
+                    />
+                )
         })
     }
 

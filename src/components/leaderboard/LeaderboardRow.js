@@ -5,7 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
-import CoinInfo from '../CoinInfo'
+import { Link, useHistory } from 'react-router-dom'
 
 const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, index }) => {
     const userInformation = useAuth();
@@ -123,14 +123,17 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, index })
             setShow(false)
           }, 3000)   
     }
-    
+    const history = useHistory();
+    const handleRowClick=() => {
+        history.push(`/coin/${id}`)
+    }
     return (
         <>
-             <tr>
-                <td>{index+1}</td>
-                <td>{name}</td>
-                <td>{marketcap}</td>
-                <td> {age} days</td>
+            <tr>
+                <td onClick={()=> handleRowClick()}>{index+1}</td>
+                <td onClick={()=> handleRowClick()}>{name}</td>
+                <td onClick={()=> handleRowClick()}>{marketcap}</td>
+                <td onClick={()=> handleRowClick()}> {age} days</td>
                 <td> 
                 <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
                     <Button onClick={() => {vote();}} className="voteButton">
