@@ -1,15 +1,38 @@
-import React from 'react'
+import {React, useState} from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import { firebase, firestore } from '../config/fbConfig'
 import Button from 'react-bootstrap/Button'
 import { FaPlus, FaBullhorn, FaSignInAlt } from 'react-icons/fa';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import logo from '../../Logo_CoinPump.png'
 import './styles.css'
 import { useAuth} from '../../contexts/AuthContext'
+import Select from 'react-dropdown-select'
 
 const NavigationBar = () => {
-    const { currentUser, logout } = useAuth() 
+    const { currentUser, logout } = useAuth()
+    const [ coins, setCoins ] = useState([])
+
+    console.log("hello")
+
+     async function fetchData() {
+         let temp = []
+         console.log("hello")
+         await firestore.collection("Coins").get().then((querySnapshot) => {
+             querySnapshot.forEach((doc) => {
+                    var coinName = doc.data().Name;
+                    var id = doc.id;
+                    temp = [...temp, {"Name" : coinName, "ID" : id}]
+                 
+             });
+             setCoins(temp)
+             console.log(coins)
+         })
+     }
+
+    
+
     const logInButton = () => {
         if (currentUser){
             return (<Link  className='navlink' to="/">
@@ -48,6 +71,12 @@ const NavigationBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
+                        <Select
+                            options={coins}
+                            labelField = "Name"
+                            searchBy = "Name"
+                            onChange={fetchData}
+                        />
                         <Link className='navlink' to="/addcoin">
                             <Button className="mr-4 navbutton">
                                 <FaPlus/> add coin

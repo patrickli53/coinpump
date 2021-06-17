@@ -17,6 +17,7 @@ import TermsOfService from './pages/terms'
 import CoinGalaxyToken from './pages/CoinGalaxyToken'
 
 function App() {
+  console.log("omar")
   return (
     <AuthProvider>
       <Router>

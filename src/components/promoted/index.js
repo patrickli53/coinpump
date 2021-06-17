@@ -21,6 +21,7 @@ const Promoted = () => {
                     coinData.id = doc.id;
                     setPromotedCoins(promotedCoins => [...promotedCoins, coinData]);
                     console.log(doc.id, " => promo", doc.data());
+                    console.log("omar");
                 }
             });
         })
