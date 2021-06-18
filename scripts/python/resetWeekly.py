@@ -19,12 +19,16 @@ db=firestore.client()
 
 
 def ResetWeeklyVotes():
+    f=open("backup.txt", "w")
     # doc
     coins = db.collection("Coins").get()
 
     for coin in coins:
         key = coin.id
+        f.write("%s : %s\n" % (coin.id, coin.to_dict()["WeeklyVotes"]))
         db.collection("Coins").document(key).update({"WeeklyVotes": 0})
+
+    f.close()
 
 #MAIN
 def Main():
