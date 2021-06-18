@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/Alert'
 import './styles.css'
 import LeaderboardRow from './LeaderboardRow';
 
-const Leaderboard = ({sortMethod}) => {
+const Leaderboard = ({sortMethod, promoted}) => {
     const [leaderboard, setLeaderboard] = useState([])
 
     useEffect(() => {
@@ -14,6 +14,21 @@ const Leaderboard = ({sortMethod}) => {
     }, []);
     
     async function fetchData() {
+        console.log(promoted)
+        if (promoted == "true" || promoted == "True"){
+            await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().Promoted == true && doc.data().Approved == true){
+                        let coinData = doc.data();
+                        coinData.id = doc.id;
+                        setLeaderboard(leaderboard => [...leaderboard, coinData]);
+                    }
+                });
+            })
+
+            return;
+        }
+
         console.log(sortMethod)
         if (sortMethod == "weekly"){
             await firestore.collection("Coins").orderBy("WeeklyVotes", "desc").get().then((querySnapshot) => {
@@ -27,6 +42,7 @@ const Leaderboard = ({sortMethod}) => {
                 });
             })
         }else{
+            // Defaults to sort by all time
             await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     if (doc.data().Promoted == false && doc.data().Approved == true){
@@ -51,6 +67,7 @@ const Leaderboard = ({sortMethod}) => {
                         marketcap={doc.MarketCap} 
                         age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} 
                         votes={doc.Votes}  weeklyVotes={doc.WeeklyVotes}
+                        logo = {doc.Logo}
                     />
                 )
         })
@@ -62,6 +79,7 @@ const Leaderboard = ({sortMethod}) => {
                 <thead>
                     <tr>
                     <th>#</th>
+                    <th>Logo</th>   
                     <th>Name</th>
                     <th>Market Cap</th>
                     <th>Age</th>

@@ -52,3 +52,8 @@
     background-color:#e7e5e6 !important;
     border-color:  #cacecc #cacecc #e7e5e6 !important;
 }
+
+.tokenLogo{
+    height: 40px;
+    width: 40px;
+}

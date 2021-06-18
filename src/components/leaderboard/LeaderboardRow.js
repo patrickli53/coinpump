@@ -7,7 +7,7 @@ import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 import { Link, useHistory } from 'react-router-dom'
 
-const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, index }) => {
+const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, logo, index }) => {
     const userInformation = useAuth();
   
     const [totalVotes, setVotes] = useState(votes)
@@ -130,7 +130,15 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, index })
     return (
         <>
             <tr>
+
                 <td onClick={()=> handleRowClick()}>{index+1}</td>
+                <td>
+                    <img
+                    src={logo}
+                    alt="token"
+                    className="tokenLogo"
+                    />
+                </td>
                 <td onClick={()=> handleRowClick()}>{name}</td>
                 <td onClick={()=> handleRowClick()}>{marketcap}</td>
                 <td onClick={()=> handleRowClick()}> {age} days</td>

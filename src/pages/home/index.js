@@ -10,7 +10,7 @@ const Home = () => {
         <div className='homeBackground'>
             <NavigationBar />
             <div className="promotedTable">
-                <Promoted />
+                <Leaderboard  promoted="True"/>
             </div>
             <div className="promotedTable">
                 <LeaderboardWithTabs />
