@@ -9,7 +9,6 @@ import { InputGroup, Container, Row, Col, Card } from 'react-bootstrap'
 import {auth, firestore, firebase} from '../../components/config/fbConfig.js';
 import {Link} from 'react-router-dom';
 
-
 const AddCoin = () => {
     const [validated, setValidated] = useState(false);
     const [date, setDate] = useState(new Date());
@@ -40,11 +39,7 @@ const AddCoin = () => {
                 <NavigationBar />
             </div>
 
-            <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "160vh"}}>
-                <div className="w-100" style={{maxWidth:"600px"}}>
-                    <AddCoinComponent />
-                </div>
-            </Container>  
+                <AddCoinComponent />
         </div>
     )
 }
