@@ -5,7 +5,7 @@ import ReactDatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { InputGroup, Container, Row, Col, Card } from 'react-bootstrap'
 import {auth, firestore, firebase} from '../config/fbConfig.js';
-import {Link} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom'
 import {useAuth} from '../../contexts/AuthContext'
 
 
@@ -34,6 +34,8 @@ const AddCoinComponent = () => {
         setDate(date);
     }
     
+    const history = useHistory();
+    
     const handlePost = (event) => {
         
         firestore.collection("Coins").add({ 
@@ -48,7 +50,6 @@ const AddCoinComponent = () => {
             Logo: logo, 
             Price: price,
             BSC: BSC,
-            Solana: solana,
             Website: website,
             Twitter: twitter,
             Telegram: telegram,
@@ -56,8 +57,9 @@ const AddCoinComponent = () => {
             ContactEmail: contactEmail,
             Ethereum: ethereum,
             Approved: false
-
         });
+
+        history.push('/addcoinsuccess')
         
 
     }

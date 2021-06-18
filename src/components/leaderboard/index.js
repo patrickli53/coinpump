@@ -59,19 +59,27 @@ const Leaderboard = ({sortMethod, promoted}) => {
             // Adds coin only if its approved by admin
                 return (
                     
+                    // <LeaderboardRow 
+                    //     alert={alert} 
+                    //     id={doc.id} 
+                    //     index={index} 
+                    //     name={doc.Name} 
+                    //     marketcap={doc.MarketCap} 
+                    //     age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} 
+                    //     votes={doc.Votes}  weeklyVotes={doc.WeeklyVotes}
+                    //     logo = {doc.Logo}
+                    //     contractAddress = {doc.ContractAddress}
+                    // />
+
                     <LeaderboardRow 
-                        alert={alert} 
-                        id={doc.id} 
+                        doc={doc}
                         index={index} 
-                        name={doc.Name} 
-                        marketcap={doc.MarketCap} 
-                        age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} 
-                        votes={doc.Votes}  weeklyVotes={doc.WeeklyVotes}
-                        logo = {doc.Logo}
+                        sortMethod={sortMethod}
                     />
                 )
         })
     }
+
 
     return (
         <div>   
@@ -81,8 +89,10 @@ const Leaderboard = ({sortMethod, promoted}) => {
                     <th>#</th>
                     <th>Logo</th>   
                     <th>Name</th>
+                    <th>Chain</th>
                     <th>Market Cap</th>
                     <th>Age</th>
+                    <th>Chart</th>
                     <th>Votes</th>
                     </tr>
                 </thead>

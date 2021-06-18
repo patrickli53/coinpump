@@ -7,7 +7,21 @@ import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 import { Link, useHistory } from 'react-router-dom'
 
-const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, logo, index }) => {
+// Inputs:
+// doc - doc of token
+// index - tokens number on list
+// sortMethod - Stores which type of votes leaderboard is sorted by
+
+const LeaderboardRow = ({ doc, index, sortMethod }) => {
+    // Gets values from doc
+    const id = doc.id;
+    const name = doc.Name;
+    const marketcap = doc.MarketCap;
+    const votes = doc.Votes;
+    const weeklyVotes = doc.WeeklyVotes;
+    const logo = doc.Logo;
+    const age = ((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0);
+    const contractAddress = doc.ContractAddress;
     const userInformation = useAuth();
   
     const [totalVotes, setVotes] = useState(votes)
@@ -15,18 +29,16 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, logo, in
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
 
+
      // Observes vote field for live update 
     const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
         setVotes(docSnapshot.data().Votes)
+        setWeeklyVotes(docSnapshot.data().WeeklyVotes)
     }, err => {
         console.log('Observer error: ${err}');
     });
 
     const increment = firebase.firestore.FieldValue.increment(1);
-
-    useEffect(() =>{
-       
-    }, [totalVotes])
 
     // Increments votes by 1 on server
     const incrementVotes = async() => {
@@ -127,6 +139,28 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, logo, in
     const handleRowClick=() => {
         history.push(`/coin/${id}`)
     }
+
+    function returnChain(){
+        if (doc.BSC){
+            return "BSC";
+        }
+
+        if (doc.Ethereum){
+            return "ETH";
+        }
+        if (doc.Solana){
+            return "SOL";
+        }
+    }
+
+    function returnVotes(){
+        if (sortMethod == "weekly"){
+            return totalWeeklyVotes;
+        }else{
+            return totalVotes;
+        }
+    }
+
     return (
         <>
             <tr>
@@ -140,12 +174,14 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, logo, in
                     />
                 </td>
                 <td onClick={()=> handleRowClick()}>{name}</td>
+                <td>{returnChain()}</td>
                 <td onClick={()=> handleRowClick()}>{marketcap}</td>
                 <td onClick={()=> handleRowClick()}> {age} days</td>
+                <td><a href={"https://poocoin.app/tokens/" + contractAddress}>Chart</a></td>
                 <td> 
                 <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
                     <Button onClick={() => {vote();}} className="voteButton">
-                        {totalVotes}
+                        {returnVotes()}
                     </Button>
                 </OverlayTrigger>
                 </td>

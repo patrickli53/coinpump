@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddCoin from './pages/addcoin';
+import AddCoinSuccess from './pages/addcoinsuccess'
 import Promote from './pages/promote';
 import Login from './pages/login';
 import SignUpPage from './pages/signuppage';
@@ -18,13 +19,14 @@ import CoinGalaxyToken from './pages/CoinGalaxyToken'
 import CoinPage from './pages/CoinPage';
 
 function App() {
-  console.log("omar")
+  
   return (
     <AuthProvider>
       <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path='/addcoin' component={AddCoin}/>
+          <Route path='/addcoinsuccess' component={AddCoinSuccess}/>
           <Route path='/promote' component={Promote} />
           <Route path='/termsofservice' component={TermsOfService} />
           <Route path='/login' component={Login} />
