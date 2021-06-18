@@ -132,7 +132,7 @@ const LeaderboardRow = ({ id, name, age, marketcap, votes, weeklyVotes, logo, in
             <tr>
 
                 <td onClick={()=> handleRowClick()}>{index+1}</td>
-                <td>
+                <td onClick={()=> handleRowClick()}>
                     <img
                     src={logo}
                     alt="token"
