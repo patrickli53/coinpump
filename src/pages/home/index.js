@@ -24,7 +24,7 @@ const Home = () => {
             </Container>
             <div className="promotedTable">
                 <h2>Promoted</h2>
-                <Leaderboard  promoted="True"/>
+                <Leaderboard  promoted="True" searchText=''/>
             </div>
             <div className="promotedTable">
                 <LeaderboardWithTabs />

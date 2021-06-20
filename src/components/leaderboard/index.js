@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/Alert'
 import './styles.css'
 import LeaderboardRow from './LeaderboardRow';
 
-const Leaderboard = ({sortMethod, promoted}) => {
+const Leaderboard = ({sortMethod, promoted, searchText}) => {
     const [leaderboard, setLeaderboard] = useState([])
 
     useEffect(() => {
@@ -54,8 +54,17 @@ const Leaderboard = ({sortMethod, promoted}) => {
             })
         }
     }
+
+
     const renderLeaderboardRows = () => {
-        return leaderboard.map((doc, index)=>{
+        return leaderboard.filter(r=>{
+            if(!searchText.trim()){
+                return true
+            }
+            
+            return r.Name.toLowerCase().includes(searchText.toLowerCase())
+            
+        }).map((doc, index)=>{
             // Adds coin only if its approved by admin
                 return (
                     
