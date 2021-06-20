@@ -1,6 +1,7 @@
 import React from 'react'
 import Leaderboard from '../../components/leaderboard';
 import NavigationBar from '../../components/navbar';
+import Footer from '../../components/footer';
 import LeaderboardWithTabs from '../../components/LeaderboardWithTabs';
 import { Container, Row, Col } from 'react-bootstrap';
 import './styles.css';
@@ -29,6 +30,7 @@ const Home = () => {
                 <LeaderboardWithTabs />
             </div>
             
+            <Footer />
         </div>
     )
 }

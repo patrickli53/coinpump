@@ -2,7 +2,7 @@ import React from 'react'
 import { generateUserDocument, firebase, auth } from '../../components/config/fbConfig'
 import { useAuth } from '../../contexts/AuthContext.js'
 import NavigationBar from '../../components/navbar'
-
+import Footer from '../../components/footer';
 
 const emailSent = () => {
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import NavigationBar from '../../components/navbar'
 import { InputGroup, Container, Row, Col, Card } from 'react-bootstrap'
+import Footer from '../../components/footer';
 
 const Terms = () => {
     return (
@@ -97,6 +98,8 @@ const Terms = () => {
                     </Card.Body>
                 </ Card>
             </Container>
+
+            <Footer />
         </div>
        
     )
