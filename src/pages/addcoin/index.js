@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { InputGroup, Container, Row, Col, Card } from 'react-bootstrap'
 import {auth, firestore, firebase} from '../../components/config/fbConfig.js';
 import {Link} from 'react-router-dom';
+import Footer from '../../components/footer'
 
 const AddCoin = () => {
     const [validated, setValidated] = useState(false);
@@ -40,6 +41,7 @@ const AddCoin = () => {
             </div>
 
                 <AddCoinComponent />
+                <Footer/>
         </div>
     )
 }

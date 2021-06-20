@@ -108,7 +108,7 @@ const AddCoinComponent = () => {
 
     if (userInformation.currentUser == null){
         return(
-            <p>You must be logged in to add a coin</p>
+            <p style={{minHeight: '100vh'}}>You must be logged in to add a coin</p>
         )
     }
 

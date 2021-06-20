@@ -1,6 +1,7 @@
 import React from 'react'
 import NavigationBar from '../../components/navbar'
 import { InputGroup, Container, Row, Col, Card } from 'react-bootstrap'
+import Footer from '../../components/footer'
 
 const CoinGalaxyToken = () => {
     return (
@@ -84,6 +85,7 @@ const CoinGalaxyToken = () => {
                     </Card.Body>
                 </ Card>
             </Container>
+            <Footer/>
         </div>
        
     )
