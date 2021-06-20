@@ -14,6 +14,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 // sortMethod - Stores which type of votes leaderboard is sorted by
 
 const LeaderboardRow = ({ doc, index, sortMethod }) => {
+
+    
     // Gets values from doc
     const id = doc.id;
     const name = doc.Name;
@@ -30,6 +32,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
 
+    const publicIp = require('public-ip')
 
      // Observes vote field for live update 
     const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
@@ -54,6 +57,9 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
 
     // Updates time when user voted on database
     const vote = async() => {
+
+        console.log("Ip address = " , await publicIp.v6())
+
         // Checks if user is logged in
         if (userInformation.currentUser == null){
             console.log("You must be logged in to vote")

@@ -15,34 +15,7 @@ const NavigationBar = () => {
     const [ coins, setCoins ] = useState([])
     const [ selectedCoinUrl, setSelectedCoinUrl ] = useState()
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-     async function fetchData() {
-         let temp = []
-        
-         await firestore.collection("Coins").get().then((querySnapshot) => {
-             querySnapshot.forEach((doc) => {
-                    var coinName = doc.data().Name;
-                    var id = doc.id;
-                    temp = [...temp, {"Name" : coinName, "ID" : id}]
-             });
-             setCoins(temp)
-         })
-     }
-    
-     function searchSelect(value){
-         if (value[0]){
-            setSelectedCoinUrl(`/${value[0].ID}`)
-            
-            if (selectedCoinUrl == undefined){
-                return;
-            }
-         }
-
-        // Put code here to redirect to coin page
-     }
+   
 
     const logInButton = () => {
         if (currentUser){
@@ -81,13 +54,7 @@ const NavigationBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Select
-                            className='searchbar'
-                            options={coins}
-                            labelField = "Name"
-                            searchBy = "Name"
-                            onChange={(values) => searchSelect(values)}
-                        />
+                        
                         <Link className='navlink' to="/addcoin">
                             <Button className="mr-4 navbutton">
                                 Add Coin
