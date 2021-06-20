@@ -1,14 +1,24 @@
 .navbutton{
-    background-color: #9db5b2 !important;
-    border-color: #9db5b2 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: white !important;
 }
 
 .navlink{
     padding: 0 !important;
-    color: #444545 !important;
+    color: white !important;
 }
 
 .navbutton:hover{
     background-color: #739691 !important;
     border-color: #739691 !important;
+}
+
+.navbarBg{
+    background-color: #1D1135!important;
+}
+
+.searchbar{
+    width: 301px !important;
+    margin-right: 53px !important;
 }

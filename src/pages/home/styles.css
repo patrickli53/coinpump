@@ -9,9 +9,28 @@
 
 }
 
+.welcome{
+    color: white
+}
+
+.cg{
+    color: #ef0c63;
+}
+
+.h1, h1{
+    font-size: 48px !important;
+    
+}
+.h2, h2 {
+    font-size:24px !important;
+}
 
 html, body {
     margin:0;
     padding:0;
-    background-color: #d6dfe6;
+    background-image: url(../../stars-1837306.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

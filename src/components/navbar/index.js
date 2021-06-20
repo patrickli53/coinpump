@@ -5,7 +5,7 @@ import { firebase, firestore } from '../config/fbConfig'
 import Button from 'react-bootstrap/Button'
 import { FaPlus, FaBullhorn, FaSignInAlt } from 'react-icons/fa';
 import {Link, useHistory} from 'react-router-dom';
-import logo from '../../Logo_CoinPump.png'
+import logo from '../../logo-dark.png'
 import './styles.css'
 import { useAuth} from '../../contexts/AuthContext'
 import Select from 'react-dropdown-select'
@@ -48,14 +48,14 @@ const NavigationBar = () => {
         if (currentUser){
             return (<Link  className='navlink' to="/">
             <Button onClick={logout} className="mr-4 navbutton">
-                <FaSignInAlt/> log out
+                Log Out
             </Button>
         </Link>)
         }   
         else{
             return (<Link  className='navlink' to="/login">
             <Button className="mr-4 navbutton">
-                <FaSignInAlt/> log in
+                Log In
             </Button>
         </Link>)
         }
@@ -63,17 +63,16 @@ const NavigationBar = () => {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark">
+            <Navbar className='navbarBg' variant="dark">
                 <Link to="/"> 
                         <Navbar.Brand>
                         <img
                             alt=""
                             src={logo}
-                            width="30"
-                            height="30"
+                            width="192"
+                            height="44"
                             className="d-inline-block align-top"
                         />{' '}
-                        coingalaxy
                         </Navbar.Brand>
                     </Link>
                     <Link to ="/coingalaxytoken">
@@ -83,6 +82,7 @@ const NavigationBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         <Select
+                            className='searchbar'
                             options={coins}
                             labelField = "Name"
                             searchBy = "Name"
@@ -90,12 +90,12 @@ const NavigationBar = () => {
                         />
                         <Link className='navlink' to="/addcoin">
                             <Button className="mr-4 navbutton">
-                                <FaPlus/> add coin
+                                Add Coin
                             </Button>
                         </Link>
                         <Link  className='navlink' to="/promote">
-                            <Button className="mr-4 navbutton">
-                                <FaBullhorn/> promote
+                            <Button  className="mr-4 navbutton">
+                                Promote
                             </Button>
                         </Link>
                         {logInButton()}

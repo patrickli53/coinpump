@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import { Container } from 'react-bootstrap';
+import CoinInfo from '../../components/CoinInfo';
 import {auth, firestore, firebase} from '../../components/config/fbConfig';
+import NavigationBar from '../../components/navbar';
+import Promoted from '../../components/promoted';
 
 const CoinPage = ({match, location}) => {
     const {params: {coinId} } = match
@@ -21,19 +25,14 @@ const CoinPage = ({match, location}) => {
         }
     return (
         <>
-        <p>
-          <strong>Match Props: </strong>
-          <code>{JSON.stringify(match, null, 2)}</code>
-        </p>
-        <p>
-          <strong>Location Props: </strong>
-          <code>{JSON.stringify(location, null, 2)}</code>
-        </p>
-        <p>
-          <strong>Coin Info: </strong>
-          <code>{JSON.stringify(coinInfo)}</code>
-        </p>
-      </>
+            <NavigationBar />
+            <Container className="mt-5" style={{minHeight: "100vh"}}>  
+                <div className="w-100" style={{maxWidth:"400px"}}>
+                    <CoinInfo data={coinInfo} />
+                </div>
+            </Container>
+            <Promoted />
+        </>
     )
 }
 
