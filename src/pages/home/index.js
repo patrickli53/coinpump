@@ -12,12 +12,12 @@ const Home = () => {
             <NavigationBar />
             <Container>
                 <Row>
-                    <Col lg='3'> New Coin Updates!</Col>
+                    <Col className="coinupdate" lg='3'> New Coin Updates!</Col>
                     <Col className='welcome' lg='6'> 
                         <h1>Welcome to <span className='cg'>CoinGalaxy</span></h1>
                         <h2> Find the most hyped coins in the galaxy</h2>
                     </Col>
-                    <Col lg='3'>
+                    <Col className="coinupdate" lg='3'>
                         Advertisement component
                     </Col>
                 </Row>

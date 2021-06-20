@@ -3,14 +3,21 @@
 }
 
 .promotedTable{
-    margin-top: 5rem;
+    margin-top: 43px;
     margin-left: 10%;
     margin-right: 10%;
 
 }
 
+.coinupdate{
+    margin-top: 90px;
+    color:white;
+}
 .welcome{
-    color: white
+    margin-top: 61px;
+    color: white;
+    text-align: center;
+    
 }
 
 .cg{
