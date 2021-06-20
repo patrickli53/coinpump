@@ -1,3 +1,6 @@
 .navbar{
     font-family: 'Lora', serif;
 }
+html, body, #app, #app>div {
+    height: 100%
+  }

@@ -71,6 +71,7 @@ const LoginComponent = () => {
             <div className="w-100 text-center mt-2">
                 Don't have an account? <Link to='/signup'>Sign up!</Link>
             </div>
+            <Link to='/resetPassword'>Forgot Password</Link>
             <Button disabled={loading} className="w-100" onClick={trySignInWithGoogle}> Sign in with Google</Button>
         </>
     )

@@ -1,5 +1,4 @@
-html, body {
-    margin:0;
-    padding:0;
-    background-color: #d6dfe6;
+.pagecontainer{
+    min-height: 100vh
 }
+
