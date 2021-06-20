@@ -27,9 +27,18 @@ const Promoted = () => {
         })
     }
 
+    const searchText = 't'
+
     const renderPromoRows = () => {
         console.log(promotedCoins)
-        return promotedCoins.map((doc, index)=>{
+
+            return promotedCoins.filter(r=>{
+                if(!searchText.trim()){
+                    return true
+                }
+
+                return r.Name.toLowerCase().includes(searchText.toLowerCase())
+            }).map((doc, index)=>{
                 return <PromotedRow id={doc.id} index={index} name={doc.Name} marketcap={doc.MarketCap} age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} votes={doc.Votes} weeklyVotes={doc.WeeklyVotes} />  
         })
     }

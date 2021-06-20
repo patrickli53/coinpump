@@ -6,6 +6,7 @@ import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 import { Link, useHistory } from 'react-router-dom'
+import ReCAPTCHA from "react-google-recaptcha";
 
 // Inputs:
 // doc - doc of token
@@ -185,6 +186,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                     </Button>
                 </OverlayTrigger>
                 </td>
+                
             </tr>
         </>
     )
