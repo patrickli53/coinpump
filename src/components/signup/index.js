@@ -15,6 +15,8 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [notBot, setNotBot] = useState(false)
+    const [click, setClick] = useState(true)
+    const [email, setEmail] = useState()
 
     
     const recaptchaRef = React.createRef();
@@ -41,16 +43,18 @@ const SignUp = () => {
         }).catch(function(error){
           console.log(error)
         });
+
       }
 
     async function handleSubmit(e) {
+
+        e.preventDefault()
 
         if(!notBot){
             setError("Please check CAPTCHA")
             return
         }
 
-        e.preventDefault()
     
         if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
           return setError("Passwords do not match")
@@ -65,54 +69,77 @@ const SignUp = () => {
               verification() //sends the email verification
               generateUserDocument(user)
           })
-          history.push("/verification")
         } catch {
           setError("Failed to create an account")
         }
    
 
-
+        setClick(false)
         setLoading(false)
       }
     
-
-    return (
-        <>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4"> Sign Up</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required/>
-
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required/>
-                        </Form.Group>
-                        <Form.Group id="passwordConfirmation">
-                            <Form.Label>Password Confirmation</Form.Label>
-                            <Form.Control type="password" ref={passwordConfirmationRef} required/>
-                        </Form.Group>
+    
+    if(click){
+        return (
+            <>
+                <Card>
+                    <Card.Body>
+                        <h2 className="text-center mb-4"> Sign Up</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group id="email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" ref={emailRef} required/>
+    
+                            </Form.Group>
+                            <Form.Group id="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" ref={passwordRef} required/>
+                            </Form.Group>
+                            <Form.Group id="passwordConfirmation">
+                                <Form.Label>Password Confirmation</Form.Label>
+                                <Form.Control type="password" ref={passwordConfirmationRef} required/>
+                            </Form.Group>
+                            
+                                <ReCAPTCHA
+                                ref={recaptchaRef}
+                                sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
+                                render="explicit"
+                                onChange={notABot}
+                                />
+                            
+                            <Button disabled={loading} className="w-100" type="submit"> Sign Up</Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                <div className="w-100 text-center mt-2">
+                    Already have an account? <Link to="/login">Log in!</Link>
+                </div>
+            </>
+        )
+    } else {
+        return (
+            <>
+                <Card>
+                    <Card.Body>
+                        <h2 className="text-center mb-4"> Sign Up</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={verification()}>
+                            
                         
-                            <ReCAPTCHA
-                            ref={recaptchaRef}
-                            sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
-                            render="explicit"
-                            onChange={notABot}
-                            />
-                        
-                        <Button disabled={loading} className="w-100" type="submit"> Sign Up</Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                Already have an account? <Link to="/login">Log in!</Link>
-            </div>
-        </>
-    )
+                            <Form.Group id="passwordConfirmation">
+                                <Form.Label>Please Check Inbox</Form.Label>
+                            </Form.Group>
+                            
+                            <Button disabled={loading} className="w-100" type="submit">Resend</Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                
+            </>
+        )
+    }
+   
 }
 
 export default SignUp

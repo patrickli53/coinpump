@@ -7,6 +7,7 @@ import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 import { Link, useHistory } from 'react-router-dom'
 import ReCAPTCHA from "react-google-recaptcha";
+import Modal from 'react-bootstrap/Modal'
 
 // Inputs:
 // doc - doc of token
@@ -29,7 +30,23 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const [totalWeeklyVotes, setWeeklyVotes] = useState(weeklyVotes)
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
+    const [showModal, setShowModal] = useState(false)
+    const [userID, setUserID] = useState("")
+    const [verified, setVerified] = useState(false)
+    const handleClose = () => setShowModal(false)
+    const handleShow = () => setShowModal(true)
+    const recaptchaRef = React.createRef();
 
+    const notABot = event => {
+        console.log("Updating verified for: ", userID)
+        firestore.collection("IP").doc(userID).set({
+            Verified: true
+        }, {merge: true}
+        );
+        handleClose()
+     }
+
+    const publicIp = require('public-ip')
 
      // Observes vote field for live update 
     const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
@@ -55,10 +72,86 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     // Updates time when user voted on database
     const vote = async() => {
         // Checks if user is logged in
+        var ip;
+
         if (userInformation.currentUser == null){
-            console.log("You must be logged in to vote")
-            setError("You must be logged in to vote.")
-            setShow(true)
+            try {
+                ip = await publicIp.v6();
+            }catch{
+                ip = await publicIp.v4();
+            }
+
+            var userDoc;
+
+            await firestore.collection("IP").where("IP", "==", ip).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    userDoc = doc;
+                    setVerified(userDoc.data().Verified);
+                    console.log("Setting verified to", userDoc.data().Verified)
+                });    
+            });
+
+            if (userDoc){
+                // Checks if user is verified
+                if (userDoc.data().Verified == false){
+                    // Put code for captcha here ****
+                    handleShow();
+                    return;
+                }
+
+                console.log("UserID being set to: ", userDoc.id)
+                setUserID(userDoc.id);
+
+                var lastVoteDate = userDoc.data().tokens.[id];
+
+                // gets todays date
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+                var yyyy = today.getFullYear();
+                today = mm + '/' + dd + '/' + yyyy;
+        
+                if (lastVoteDate){
+                    // Allow vote if user has not voted today
+                    if (lastVoteDate != today){
+                        await firestore.collection("IP").doc(userID).set({
+                            // Edits last vote date
+                            tokens: { [id]: today}
+                        });
+                        setVotes(totalVotes+1);
+                        setWeeklyVotes(totalWeeklyVotes+1);
+                        incrementVotes()
+                    }else{
+                        setError("You can only vote once every 24 hours.")
+                        setShow(true)
+                    }
+        
+                }else{
+                    // If user has not voted yet, create a new entry for the token
+                    await firestore.collection("IP").doc(userDoc.id).set({
+                        tokens: { [id]: today}
+                    }, {merge: true}
+                    );
+        
+                    setVotes(totalVotes+1);
+                    setWeeklyVotes(totalWeeklyVotes+1);
+                    incrementVotes();
+                }
+            
+            }else{
+                // Create doc
+                console.log("User does not exist, creating");
+                firestore.collection("IP").add({
+                    IP: ip,
+                    tokens: {},
+                    Verified: false
+                }).then(function(docRef){
+                    setUserID(docRef.id)
+                });
+
+                handleShow();
+            }
+
             return;
         }
         
@@ -164,6 +257,18 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
 
     return (
         <>
+        <Modal show={showModal} onHide={handleClose}> 
+        <Modal.Header closeButton>
+          <Modal.Title>Please fill the Captcha</Modal.Title>
+        </Modal.Header>
+        <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
+            render="explicit"
+            onChange={notABot}
+            />    
+        </Modal>
+
             <tr>
 
                 <td onClick={()=> handleRowClick()}>{index+1}</td>

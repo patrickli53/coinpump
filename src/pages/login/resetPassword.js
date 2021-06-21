@@ -9,6 +9,7 @@ const ResetPassword = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const { resetPassword} = useAuth()
+    const [ click, setClick ] = useState(true)
     
 
     async function resetThePassword(e) {
@@ -21,30 +22,51 @@ const ResetPassword = () => {
         } catch {
           setError("Failed to reset password")
         }
-    
+        setClick(false)
         setLoading(false)
-      }
+    }
 
 
-    return (
-        <>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4"> Log In</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={resetThePassword}>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required/>
+    if(click){
+        return (
+            <>
+                <Card>
+                    <Card.Body>
+                        <h2 className="text-center mb-4"> Log In</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={resetThePassword}>
+                            <Form.Group id="email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" ref={emailRef} required/>
 
-                        </Form.Group>
-                        <Button disabled={loading} className="w-100" type="submit"> ResetPassword</Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-            
-        </>
-    )
+                            </Form.Group>
+                            <Button disabled={loading} className="w-100" type="submit"> ResetPassword</Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                
+                
+            </>
+        )
+    } else {
+        return (
+            <>
+                <Card>
+                    <Card.Body>
+                        <h2 className="text-center mb-4"> Log In</h2>
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={resetThePassword}>
+                            <Form.Label>Please Check Inbox</Form.Label>
+                            <Button disabled={loading} className="w-100" type="submit"> Resend </Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                
+                
+            </>
+        )
+    }
+        
 }
 
 

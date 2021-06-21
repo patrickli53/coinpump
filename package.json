@@ -8,7 +8,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
-    "firebase": "^8.6.5",
+    "firebase": "^8.6.8",
+    "public-ip": "^4.0.4",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-datepicker": "^4.1.1",
@@ -26,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:dev": "env-cmd -f .env.development npm run build && firebase deploy -P dev",
+    "build:dev": "env-cmd -f .env.development npm run build && firebase deploy",
     "build:prod": "env-cmd -f .env.production npm run build && firebase deploy -P prod"
   },
   "eslintConfig": {
