@@ -9,32 +9,6 @@ import './styles.css';
 
 const Home = () => {
     return (
-<<<<<<< HEAD
-        <div>
-            <div className='homeBackground'>
-                <NavigationBar />
-                <Container>
-                    <Row>
-                        <Col className="coinupdate" lg='3'> New Coin Updates!</Col>
-                        <Col className='welcome' lg='6'> 
-                            <h1>Welcome to <span className='cg'>CoinGalaxy</span></h1>
-                            <h2> Find the most hyped coins in the galaxy</h2>
-                        </Col>
-                        <Col className="coinupdate" lg='3'>
-                            Advertisement component
-                        </Col>
-                    </Row>
-                </Container>
-                <div className="promotedTable">
-                    <h2>Promoted</h2>
-                    <Leaderboard  promoted="True" searchText=''/>
-                </div>
-                <div className="promotedTable">
-                    <LeaderboardWithTabs />
-                </div>
-                
-            </div>
-=======
         <div className='homeBackground'>
             <NavigationBar />
             <Container>
@@ -58,7 +32,6 @@ const Home = () => {
             </div>
             
             
->>>>>>> 08e2492fb5fd257acaa8ea55c58edfc11b7bc8bf
             <Footer />
         </div>
     )
