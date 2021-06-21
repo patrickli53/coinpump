@@ -4,7 +4,10 @@ import Nav from 'react-bootstrap/Nav'
 import { firebase, firestore } from '../config/fbConfig'
 import {Link, useHistory} from 'react-router-dom';
 import 'firebase/storage'
-import logo from '../../images/TreeCoinAd.gif'
+
+
+
+
 
 const BannerAds = () => {
     const storage = firebase.storage();
