@@ -7,6 +7,7 @@ import {auth, firestore, firebase} from '../config/fbConfig';
 import {useAuth} from '../../contexts/AuthContext.js'
 import { Link, useHistory } from 'react-router-dom'
 import ReCAPTCHA from "react-google-recaptcha";
+import Modal from 'react-bootstrap/Modal'
 
 // Inputs:
 // doc - doc of token
@@ -14,8 +15,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 // sortMethod - Stores which type of votes leaderboard is sorted by
 
 const LeaderboardRow = ({ doc, index, sortMethod }) => {
-
-    
     // Gets values from doc
     const id = doc.id;
     const name = doc.Name;
@@ -31,8 +30,19 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const [totalWeeklyVotes, setWeeklyVotes] = useState(weeklyVotes)
     const [show, setShow] = useState(false)
     const [error, setError] = useState('') 
+    const [showModal, setShowModal] = useState(false)
+    const [verified, setVerified] = useState(false)
 
-    const publicIp = require('public-ip')
+    const handleClose = () => setShowModal(false)
+    const handleShow = () => setShowModal(true)
+    const recaptchaRef = React.createRef();
+
+    const notABot = event => {
+        setVerified(true)
+        handleClose()
+        
+     }
+
 
      // Observes vote field for live update 
     const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
@@ -58,12 +68,11 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     // Updates time when user voted on database
     const vote = async() => {
 
-        console.log("Ip address = " , await publicIp.v6())
-
         // Checks if user is logged in
         if (userInformation.currentUser == null){
+            handleShow()                                                               
             console.log("You must be logged in to vote")
-            setError("You must be logged in to vote.")
+            //setError("You must be logged in to vote.")
             setShow(true)
             return;
         }
@@ -170,6 +179,18 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
 
     return (
         <>
+        <Modal show={showModal} onHide={handleClose}> 
+        <Modal.Header closeButton>
+          <Modal.Title>Please fill the Captcha</Modal.Title>
+        </Modal.Header>
+        <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
+            render="explicit"
+            onChange={notABot}
+            />    
+        </Modal>
+
             <tr>
 
                 <td onClick={()=> handleRowClick()}>{index+1}</td>
