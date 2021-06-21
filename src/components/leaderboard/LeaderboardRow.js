@@ -117,7 +117,8 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                         await firestore.collection("IP").doc(userID).set({
                             // Edits last vote date
                             tokens: { [id]: today}
-                        });
+                        }, {merge: true}
+                        );
                         setVotes(totalVotes+1);
                         setWeeklyVotes(totalWeeklyVotes+1);
                         incrementVotes()
