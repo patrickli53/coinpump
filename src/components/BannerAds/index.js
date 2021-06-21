@@ -5,10 +5,6 @@ import { firebase, firestore } from '../config/fbConfig'
 import {Link, useHistory} from 'react-router-dom';
 import 'firebase/storage'
 
-
-
-
-
 const BannerAds = () => {
     const storage = firebase.storage();
     const storageRef = storage.ref();
@@ -53,7 +49,6 @@ const BannerAds = () => {
 
         
     }
-
 
     return (
         <div>
