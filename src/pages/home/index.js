@@ -1,6 +1,7 @@
 import React from 'react'
 import Leaderboard from '../../components/leaderboard';
 import NavigationBar from '../../components/navbar';
+import BannerAds from '../../components/BannerAds'
 import Footer from '../../components/footer';
 import LeaderboardWithTabs from '../../components/LeaderboardWithTabs';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -18,7 +19,7 @@ const Home = () => {
                         <h2> Find the most hyped coins in the galaxy</h2>
                     </Col>
                     <Col className="coinupdate" lg='3'>
-                        Advertisement component
+                        <BannerAds />
                     </Col>
                 </Row>
             </Container>
