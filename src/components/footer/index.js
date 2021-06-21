@@ -15,8 +15,10 @@ import Select from 'react-dropdown-select'
 const Footer = () => {
 
     return (
-            <div className='footer' variant="dark">
+        <>
+            <Navbar className='footer' variant="dark">
                 <Link to="/"> 
+                        <Navbar.Brand>
                         <img
                             alt=""
                             src={logo}
@@ -24,8 +26,11 @@ const Footer = () => {
                             height="44"
                             className="d-inline-block align-bottom"
                         />{' '}
+                        </Navbar.Brand>
                     </Link>
-              
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    
                         <Link className='navlink' to={{ pathname:"https://twitter.com/_CoinGalaxy"}} target="_blank">
                             <Button className="mr-4 navbutton">
                             <img
@@ -50,7 +55,7 @@ const Footer = () => {
                             </Button>
                         </Link>
 
-                 
+                    <Nav className="ml-auto">
                         <Link className='navlink' to="/termsofservice">
                             <Button className="mr-4 navbutton">
                                 Terms of Service
@@ -62,7 +67,10 @@ const Footer = () => {
                                 Contact Us
                             </Button>
                         </Link>
-            </div>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </>
     )
 }
 

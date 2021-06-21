@@ -8,10 +8,9 @@ import './styles.css';
 
 const Home = () => {
     return (
-        <div className='homeBackground'>
-            <NavigationBar />
-<<<<<<< HEAD
-            <div style={{minHeight: "100vh"}}>
+        <div>
+            <div className='homeBackground'>
+                <NavigationBar />
                 <Container>
                     <Row>
                         <Col className="coinupdate" lg='3'> New Coin Updates!</Col>
@@ -26,34 +25,13 @@ const Home = () => {
                 </Container>
                 <div className="promotedTable">
                     <h2>Promoted</h2>
-                    <Leaderboard  promoted="True"/>
+                    <Leaderboard  promoted="True" searchText=''/>
                 </div>
                 <div className="promotedTable">
                     <LeaderboardWithTabs />
                 </div>
-=======
-            <Container>
-                <Row>
-                    <Col className="coinupdate" lg='3'> New Coin Updates!</Col>
-                    <Col className='welcome' lg='6'> 
-                        <h1>Welcome to <span className='cg'>CoinGalaxy</span></h1>
-                        <h2> Find the most hyped coins in the galaxy</h2>
-                    </Col>
-                    <Col className="coinupdate" lg='3'>
-                        Advertisement component
-                    </Col>
-                </Row>
-            </Container>
-            <div className="promotedTable">
-                <h2>Promoted</h2>
-                <Leaderboard  promoted="True" searchText=''/>
+                
             </div>
-            <div className="promotedTable">
-                <LeaderboardWithTabs />
->>>>>>> 3b0d1794222ce04794ba83b3740aeb6cc623bf54
-            </div>
-            
-            
             <Footer />
         </div>
     )

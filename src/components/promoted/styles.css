@@ -1,37 +1,38 @@
 .table{
     border-radius: 1.3em;
     overflow: hidden;
-    background-color: #e7e5e6;
+    background-color: #1D1135;
     text-align: center;
     font-family: 'Lora'
 }
 
 .voteButton{
-    background-color: #daf0ee !important;
-    border-color: #c5e7e3 !important;
-    color: #444545 !important;
+    background-color: #EF0C63!important;
+    border-color: #EF0C63!important;
+    color: white !important;
     font-weight: 700 !important;
-    border: 2px solid #c5e7e3 !important;
+    border: 2px solid #EF0C63 !important;
+    min-width: 60px;
 }
 
 .voteButton:active{
-    background-color: #739691 !important;
-    border-color: #739691 !important;
-    color: #e7e5e6 !important;
+    background-color: #f65392 !important;
+    border-color: #f65392 !important;
+    color: white !important;
     font-weight: 700 !important;
 }
 .voteButton:not(:disabled):not(.disabled).active, .voteButton:not(:disabled):not(.disabled):active, .show>.voteButton.dropdown-toggle{
-    background-color: #739691 !important;
-    border-color: #739691 !important;
-    color: #e7e5e6 !important;
+    background-color: #f65392 !important;
+    border-color: #f65392 !important;
+    color: white!important;
     font-weight: 700 !important;
     box-shadow: none !important;
 }
 
 .voteButton:hover{
-    background-color: #739691 !important;
-    border-color: #739691 !important;
-    color: #e7e5e6 !important;
+    background-color: #8f073b !important;
+    border-color: #8f073b !important;
+    color: white !important;
     font-weight: 700 !important;
 }
 

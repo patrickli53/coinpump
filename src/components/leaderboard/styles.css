@@ -1,17 +1,23 @@
 .table{
-    border-radius: 0 1.3em 1.3em 1.3em !important;
+    border-radius:  1.3em 1.3em 1.3em 1.3em !important;
     overflow: hidden;
-    background-color: #e7e5e6;
+    background-color: #1D1135;
     text-align: center;
-    font-family: 'Lora'
+    font-family: 'Lora';
+    color: white !important;
 }
 
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #311E57; 
+ }
+
 .btn{
-    background-color: #daf0ee !important;
-    border-color: #c5e7e3 !important;
-    color: #444545 !important;
+    background-color: #EF0C63 !important;
+    border-color: #EF0C63 !important;
+    color: white !important;
     font-weight: 700 !important;
-    border: 2px solid #c5e7e3 !important;
+    border: 2px solid #EF0C63 !important;
 }
 
 .btn:active{
@@ -21,17 +27,17 @@
     font-weight: 700 !important;
 }
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
-    background-color: #739691 !important;
-    border-color: #739691 !important;
-    color: #e7e5e6 !important;
+    background-color: #8f073b !important;
+    border-color: #8f073b !important;
+    color: white !important;
     font-weight: 700 !important;
     box-shadow: none !important;
 }
 
 .btn-primary:hover{
-    background-color: #739691 !important;
-    border-color: #739691 !important;
-    color: #e7e5e6 !important;
+    background-color: #EF0C63 !important;
+    border-color: #EF0C63 !important;
+    color: white !important;
     font-weight: 700 !important;
 }
 
@@ -45,15 +51,33 @@
 
 .leadertabs{
     border-bottom: none !important;
-    color: #444545 !important;
+    color: white !important;
 }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-    background-color:#e7e5e6 !important;
-    border-color:  #cacecc #cacecc #e7e5e6 !important;
+    font-size: 1.5rem;
+    color: white !important;
+    background-color:transparent !important;
+    border-color:  transparent !important;
 }
 
 .tokenLogo{
     height: 40px;
     width: 40px;
+}
+
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border-color: transparent !important;
+    color: white !important;
+}
+
+a{
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 1.5rem;
+}
+
+.table-hover tbody tr:hover {
+    color: white !important;
+    background-color: rgba(0,0,0,.075) ;
 }

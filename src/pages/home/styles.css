@@ -3,10 +3,14 @@
 }
 
 .promotedTable{
+    color:white;
     margin-top: 43px;
     margin-left: 10%;
     margin-right: 10%;
+}
 
+.promotedTable h2{
+    font-size: 2rem !important;
 }
 
 .coinupdate{
@@ -41,4 +45,8 @@ html, body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+}
+
+.homeBackground{
+    min-height: 100vh;
 }

@@ -92,7 +92,7 @@ const Leaderboard = ({sortMethod, promoted, searchText}) => {
 
     return (
         <div>   
-            <Table borderless hover>
+            <Table striped borderless hover>
                 <thead>
                     <tr>
                     <th>#</th>

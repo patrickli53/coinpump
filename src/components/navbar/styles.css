@@ -10,8 +10,8 @@
 }
 
 .navbutton:hover{
-    background-color: #739691 !important;
-    border-color: #739691 !important;
+    background-color: #EF0C63 !important;
+    border-color: #EF0C63 !important;
 }
 
 .navbarBg{
@@ -21,4 +21,10 @@
 .searchbar{
     width: 301px !important;
     margin-right: 53px !important;
+}
+
+.tokenLink{
+    padding-top:8px !important;
+    color: white !important;
+    font-size: 1rem;
 }

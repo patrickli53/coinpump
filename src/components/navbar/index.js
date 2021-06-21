@@ -75,7 +75,7 @@ const NavigationBar = () => {
                         />{' '}
                         </Navbar.Brand>
                     </Link>
-                    <Link to ="/coingalaxytoken">
+                    <Link className='tokenLink' to ="/coingalaxytoken">
                         CoinGalaxy Price: $3.92
                     </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

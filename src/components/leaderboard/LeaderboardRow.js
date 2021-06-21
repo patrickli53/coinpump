@@ -175,10 +175,10 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                     />
                 </td>
                 <td onClick={()=> handleRowClick()}>{name}</td>
-                <td>{returnChain()}</td>
+                <td onClick={()=> handleRowClick()} >{returnChain()}</td>
                 <td onClick={()=> handleRowClick()}>{marketcap}</td>
                 <td onClick={()=> handleRowClick()}> {age} days</td>
-                <td><a href={"https://poocoin.app/tokens/" + contractAddress}>Chart</a></td>
+                <td onClick={()=> handleRowClick()}><a target='_blank' href={"https://poocoin.app/tokens/" + contractAddress}>Chart</a></td>
                 <td> 
                 <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
                     <Button onClick={() => {vote();}} className="voteButton">
