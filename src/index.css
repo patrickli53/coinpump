@@ -1,5 +1,14 @@
+@font-face {
+    font-family:'NexaBold';
+    src: url('./fonts/Nexa_Bold.otf');
+}
+@font-face {
+    font-family:'NexaLight';
+    src: url('./fonts/Nexa_Light.otf');
+}
+
 .navbar{
-    font-family: 'Lora', serif;
+    font-family: NexaBold, serif !important;
 }
 html, body, #app, #app>div {
     height: 100%

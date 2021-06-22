@@ -1,0 +1,29 @@
+.mainCard{
+    background-color: #311E57;
+    color: white;
+}
+.sidebox{
+    background-color: #1D1135;
+    color: white;
+}
+
+.h3, h3{
+    font-style: normal !important;
+    font-weight: 200 !important;
+    font-size: 1rem !important;
+    line-height: 21px !important;
+}
+
+.socialButton{
+    border-radius: 5px !important; 
+}
+
+.socialButton a{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px !important;
+    line-height: 18px;
+    /* identical to box height */
+    color: white!important;
+    text-align: center;
+}

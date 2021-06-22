@@ -1,12 +1,17 @@
 *{
-    font-family: 'Lora'
+    font-family: NexaBold
 }
 
+.topbanner2{
+    margin-top: 1rem;
+    margin-left: 13.2% !important;
+    margin-right:10% !important; 
+}
 .promotedTable{
     color:white;
     margin-top: 43px;
     margin-left: 10%;
-    margin-right: 10%;
+    margin-right:10% !important; 
 }
 
 .promotedTable h2{
@@ -14,11 +19,11 @@
 }
 
 .coinupdate{
-    margin-top: 90px;
     color:white;
+    text-align: left !important;
+    padding-left: 0 !important;
 }
 .welcome{
-    margin-top: 61px;
     color: white;
     text-align: center;
     

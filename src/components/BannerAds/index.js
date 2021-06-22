@@ -56,8 +56,8 @@ const BannerAds = () => {
             <img
                 alt=""
                 src={fileURL}
-                width="560"
-                height="90"
+                width="420"
+                height="68.24"
                 className="d-inline-block align-bottom"
             />
             </Link>

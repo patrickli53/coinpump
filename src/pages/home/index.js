@@ -9,28 +9,34 @@ import './styles.css';
 
 const Home = () => {
     return (
-        <div className='homeBackground'>
-            <NavigationBar />
-            <Container>
-                <Row>
-                    <Col className="coinupdate" lg='3'> New Coin Updates!</Col>
-                    <Col className='welcome' lg='6'> 
-                        <h1>Welcome to <span className='cg'>CoinGalaxy</span></h1>
-                        <h2> Find the most hyped coins in the galaxy</h2>
-                    </Col>
-                    <Col className="coinupdate" lg='3'>
-                        <BannerAds />
-                    </Col>
-                </Row>
-            </Container>
-            <div className="promotedTable">
-                <h2>Promoted</h2>
-                <Leaderboard  promoted="True" searchText=''/>
+        <div>
+            <div className='homeBackground'>
+                <NavigationBar />
+                <Container className='topbanner2'>
+                    <Row>
+                        <Col className="coinupdate" lg='3'>New Coin Updates!</Col>
+                        <Col className='welcome' lg='6'> 
+                           
+                        </Col>
+                        <Col className="coinupdate" lg='3'>
+                            <BannerAds />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className='welcome' lg='12'> 
+                            <h1>Welcome to <span className='cg'>CoinGalaxy</span></h1>
+                            <h2> Find the most hyped coins in the galaxy</h2>
+                        </Col>
+                    </Row>
+                </Container>
+                <div className="promotedTable">
+                    <h2>Promoted</h2>
+                    <Leaderboard  promoted="True" searchText=''/>
+                </div>
+                <div className="promotedTable">
+                    <LeaderboardWithTabs />
+                </div>
             </div>
-            <div className="promotedTable">
-                <LeaderboardWithTabs />
-            </div>
-            
             
             <Footer />
         </div>
