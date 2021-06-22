@@ -37,12 +37,19 @@ const AddCoinComponent = () => {
     const history = useHistory();
     
     const handlePost = (event) => {
-        
+        // Gets todays date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+
         firestore.collection("Coins").add({ 
             Name: name, 
             Description: description, 
             MarketCap: marketCap, 
             Date: date, 
+            DateAdded: today,
             Promoted: false, 
             Votes: 0, 
             WeeklyVotes: 0,
