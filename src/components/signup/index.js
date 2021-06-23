@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Card, Alert} from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext.js'
 import ReCAPTCHA from "react-google-recaptcha";
+import NavigationBar from '../../components/navbar'
 
 
 const SignUp = () => { 
@@ -36,8 +37,9 @@ const SignUp = () => {
 
 
     const verification = async () => {
+        
         var user = firebase.auth().currentUser;
-      
+        console.log("Resending verification to ", user.email)
         user.sendEmailVerification().then(function(){
           
         }).catch(function(error){
@@ -68,6 +70,7 @@ const SignUp = () => {
               const user = credential.user;
               verification() //sends the email verification
               generateUserDocument(user)
+              
           })
         } catch {
           setError("Failed to create an account")
@@ -122,17 +125,14 @@ const SignUp = () => {
             <>
                 <Card>
                     <Card.Body>
-                        <h2 className="text-center mb-4"> Sign Up</h2>
+                        <h2 className="text-center mb-4">Verification Email Sent</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
-                        <Form onSubmit={verification()}>
-                            
-                        
-                            <Form.Group id="passwordConfirmation">
-                                <Form.Label>Please Check Inbox</Form.Label>
-                            </Form.Group>
-                            
-                            <Button disabled={loading} className="w-100" type="submit">Resend</Button>
-                        </Form>
+                            <div>
+                                <h className="text-center mb-4">Please check inbox your inbox.</h>
+                                <div>
+                                    <button disabled={loading} className="w-100" onClick={() => {verification()}}>Resend</button>
+                                </div>
+                            </div>
                     </Card.Body>
                 </Card>
                 
