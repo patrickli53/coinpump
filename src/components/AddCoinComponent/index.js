@@ -116,7 +116,7 @@ const AddCoinComponent = () => {
     if (userInformation.currentUser == null){
         return(
             <Container className="d-flex justify-content-center align-items-center" style={{minHeight: "100vh"}}>
-                <div className="w-100 backgroundCard" style={{maxWidth:"600px"}}>
+                <div className="w-100 backgroundCard notLoggedIn" style={{maxWidth:"600px"}}>
                     <p>You must be logged in to add a coin.</p>
                 </div>
             </Container>
@@ -126,7 +126,7 @@ const AddCoinComponent = () => {
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "160vh"}}>
             <div className="w-100" style={{maxWidth:"600px"}}>
-                    <Card>
+                    <Card className='backgroundCard'>
                         <Card.Body>
                             <Container className="mt-5" style={{minHeight: "100vh"}}>  
                                 <h2 className="mb-3"> Add Coin </h2>

@@ -5,7 +5,7 @@ import { Form, Button, Card, Alert} from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext.js'
 import ReCAPTCHA from "react-google-recaptcha";
 import NavigationBar from '../../components/navbar'
-
+import './styles.css';
 
 const SignUp = () => { 
     const emailRef = useRef()
@@ -85,7 +85,7 @@ const SignUp = () => {
     if(click){
         return (
             <>
-                <Card>
+                <Card className='signupBody'>
                     <Card.Body>
                         <h2 className="text-center mb-4"> Sign Up</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
@@ -109,13 +109,14 @@ const SignUp = () => {
                                 sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
                                 render="explicit"
                                 onChange={notABot}
+                                className='d-flex align-items-center justify-content-center m-3'
                                 />
                             
                             <Button disabled={loading} className="w-100" type="submit"> Sign Up</Button>
                         </Form>
                     </Card.Body>
                 </Card>
-                <div className="w-100 text-center mt-2">
+                <div className="w-100 text-center mt-2 login">
                     Already have an account? <Link to="/login">Log in!</Link>
                 </div>
             </>
@@ -123,7 +124,7 @@ const SignUp = () => {
     } else {
         return (
             <>
-                <Card>
+                <Card className='signupBody'>
                     <Card.Body>
                         <h2 className="text-center mb-4">Verification Email Sent</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
