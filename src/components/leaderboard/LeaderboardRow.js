@@ -114,7 +114,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 if (lastVoteDate){
                     // Allow vote if user has not voted today
                     if (lastVoteDate != today){
-                        await firestore.collection("IP").doc(userID).set({
+                        await firestore.collection("IP").doc(userDoc.id).set({
                             // Edits last vote date
                             tokens: { [id]: today}
                         }, {merge: true}
