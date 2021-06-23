@@ -1,0 +1,9 @@
+.bannerAds{
+    display: flex;
+    margin-left: auto;
+    text-align: right;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: stretch;
+    flex-wrap: nowrap;
+}

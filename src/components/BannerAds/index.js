@@ -51,14 +51,14 @@ const BannerAds = () => {
     }
 
     return (
-        <div>
+        <div >
             <Link to={{pathname: link}} target="_blank"> 
             <img
                 alt=""
                 src={fileURL}
-                width="420"
-                height="68.24"
-                className="d-inline-block align-bottom"
+                width="400"
+                height="66.24"
+                className="d-flex mr-0 ml-auto" 
             />
             </Link>
         </div>

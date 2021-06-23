@@ -8,7 +8,7 @@ import {useAuth} from '../../contexts/AuthContext.js'
 import { Link, useHistory } from 'react-router-dom'
 import ReCAPTCHA from "react-google-recaptcha";
 import Modal from 'react-bootstrap/Modal'
-
+import {AiOutlineLineChart} from 'react-icons/ai'
 // Inputs:
 // doc - doc of token
 // index - tokens number on list
@@ -284,7 +284,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 <td onClick={()=> handleRowClick()} >{returnChain()}</td>
                 <td onClick={()=> handleRowClick()}>{marketcap}</td>
                 <td onClick={()=> handleRowClick()}> {age} days</td>
-                <td onClick={()=> handleRowClick()}><a target='_blank' href={"https://poocoin.app/tokens/" + contractAddress}>Chart</a></td>
+                <td onClick={()=> handleRowClick()}><a target='_blank' href={"https://poocoin.app/tokens/" + contractAddress}><AiOutlineLineChart /></a></td>
                 <td> 
                 <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
                     <Button onClick={() => {vote();}} className="voteButton">
