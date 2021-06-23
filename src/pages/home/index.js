@@ -14,7 +14,7 @@ const Home = () => {
             <div className='homeBackground'>
                 <NavigationBar />
                     <Row className='topbanner2'>
-                        <Col className="coinupdate" lg='6' md='12'><CoinUpdate /> </Col>
+                        <Col className="coinupdate leftComp" lg='6' md='12'><CoinUpdate /> </Col>
                         <Col className="coinupdate" lg='6' md='12'>
                             <BannerAds/>
                         </Col>

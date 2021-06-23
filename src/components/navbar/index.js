@@ -49,7 +49,7 @@ const NavigationBar = () => {
                         </Navbar.Brand>
                     </Link>
                     <Link className='tokenLink' to ="/coingalaxytoken">
-                        CoinGalaxy Price: $3.92
+                        GalaxyCoin: $3.92
                     </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
