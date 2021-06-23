@@ -115,7 +115,11 @@ const AddCoinComponent = () => {
 
     if (userInformation.currentUser == null){
         return(
-            <p style={{minHeight: '100vh'}}>You must be logged in to add a coin</p>
+            <Container className="d-flex justify-content-center align-items-center" style={{minHeight: "100vh"}}>
+                <div className="w-100 backgroundCard" style={{maxWidth:"600px"}}>
+                    <p>You must be logged in to add a coin.</p>
+                </div>
+            </Container>
         )
     }
 

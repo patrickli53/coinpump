@@ -1,0 +1,28 @@
+.loginBody{
+    background-color: #311E57;
+    color: white;
+}
+
+.form-control{
+    background-color: #6f6189;
+    border-radius: 4px;
+    border-color: #6f6189;
+}
+
+.form-control:focus {
+    color: white;
+    background-color: #6f6189;
+    border-color: #4D435F;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(88 42 138 / 50%) !important;
+}
+
+.signup{
+    color:white;
+}
+
+.forgotPw{
+    font-size: 1rem;
+    margin: 10px;
+    color:white;
+}

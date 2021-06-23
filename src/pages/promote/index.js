@@ -2,6 +2,7 @@ import React from 'react'
 import NavigationBar from '../../components/navbar'
 import { InputGroup, Container, Row, Col, Card } from 'react-bootstrap'
 import Footer from '../../components/footer';
+import './styles.css';
 
 const Promote = () => {
     return (
@@ -9,7 +10,7 @@ const Promote = () => {
             <NavigationBar/>
             <div style={{minHeight: "100vh"}}>
                 <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "20vh"}}>
-                    <Card>
+                    <Card className="promoCard">
                         <Card.Body>
                             <div>
                             <h2>Advertising and promotions</h2>
@@ -26,7 +27,7 @@ const Promote = () => {
                 </Container>
 
                 <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "10vh"}}>
-                    <Card>
+                    <Card className="promoCard">
                         <Card.Body>
                             <div>
                             <h2>General Inquiries </h2>

@@ -1,0 +1,9 @@
+.backgroundCard{
+    background-color: #311E57;
+    min-height: 25vh;
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
