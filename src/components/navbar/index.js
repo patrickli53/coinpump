@@ -14,8 +14,14 @@ const NavigationBar = () => {
     const { currentUser, logout } = useAuth()
     const [ coins, setCoins ] = useState([])
     const [ selectedCoinUrl, setSelectedCoinUrl ] = useState()
-
+    const [ galaxyCoinPrice, setGalaxyCoinPrice ] = useState()
    
+        // Observes GalaxyCoin price field for live update 
+        const galaxyCoinPriceObserver = firestore.collection("Information").doc("GalaxyCoin").onSnapshot(docSnapshot => {
+            setGalaxyCoinPrice(docSnapshot.data().price);
+    }, err => {
+        console.log('Observer error: ${err}');
+    });
 
     const logInButton = () => {
         if (currentUser){
@@ -49,7 +55,7 @@ const NavigationBar = () => {
                         </Navbar.Brand>
                     </Link>
                     <Link className='tokenLink' to ="/coingalaxytoken">
-                        GalaxyCoin: $3.92
+                        GalaxyCoin: ${galaxyCoinPrice}
                     </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
