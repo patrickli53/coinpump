@@ -9,7 +9,7 @@ import {useAuth} from '../../contexts/AuthContext.js'
 import './styles.css'
 
 const CoinInfo = (props) => {
-   const {Name, Logo, Description, Price, MarketCap, Website, Twitter, Telegram, Votes, WeeklyVotes, ContractAddress} = props.data;
+   const {Name, Logo, Description, Price, MarketCap, Website, Twitter, Telegram, Votes, WeeklyVotes, Symbol, BSC, Ethereum, Solana,ContractAddress} = props.data;
    const date = props.data.Date;
 
    const launch = date && date.toDate().toDateString();
