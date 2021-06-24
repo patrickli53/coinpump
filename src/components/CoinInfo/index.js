@@ -225,7 +225,21 @@ const CoinInfo = (props) => {
   }
 
 
-    return (
+    
+function returnChain(){
+    if (BSC){
+        return "BSC";
+    }
+
+    if (Ethereum){
+        return "ETH";
+    }
+    if (Solana){
+        return "SOL";
+    }
+}
+
+return (
         <>
             <Container>
                 <Row>
@@ -233,16 +247,20 @@ const CoinInfo = (props) => {
                         <Card className='mainCard'>
                             <Card.Header>
                             <span> 
+
+                                <Card.Title className="header">                                
                                 <img
                                     src={Logo}
                                     alt="token"
-                                    className="tokenLogo"
-                                />
-                                {Name} 
+                                    width="100"
+                                    className='coinLogo'
+                                />{Name} 	• <span className='symbol'>${Symbol}</span></Card.Title>
+                                <Card.Subtitle className='subTitle'>{returnChain()} {ContractAddress}</Card.Subtitle>
+                               
                             </span>
-                           
+        
                             </Card.Header>
-                            <Card.Body>
+                            <Card.Body className='desc'>
                                 {Description}
                             </Card.Body>
                         </Card>

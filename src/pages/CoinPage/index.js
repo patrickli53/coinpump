@@ -5,6 +5,7 @@ import {auth, firestore, firebase} from '../../components/config/fbConfig';
 import Footer from '../../components/footer';
 import Leaderboard from '../../components/leaderboard';
 import NavigationBar from '../../components/navbar';
+import './styles.css';
 
 const CoinPage = ({match, location}) => {
     const {params: {coinId} } = match
@@ -30,7 +31,10 @@ const CoinPage = ({match, location}) => {
             <Container className="mt-5" style={{minHeight: "100vh"}}>  
                 <CoinInfo data={coinInfo} coinId={coinId}/>
             </Container>
-            <Leaderboard  promoted="True" searchText=''/>
+            <div className='promoted'> 
+                <Leaderboard  promoted="True" searchText=''/>
+            </div>
+           
             <Footer />
         </>
     )

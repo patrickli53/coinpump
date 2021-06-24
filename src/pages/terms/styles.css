@@ -1,0 +1,18 @@
+.galaxyTerms{
+    background-color: #311E57;
+    color: white;
+}
+
+.galaxyTerms h1{
+    margin-bottom: 1em;
+}
+
+.galaxyTerms h3{
+    margin-top: 1em;
+    font-family: NexaBold;
+    color: #EF0C63;
+}
+
+.galaxyTerms p{
+    font-family: NexaLight;
+}
