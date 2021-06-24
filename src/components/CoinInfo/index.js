@@ -5,6 +5,9 @@ import './styles.css'
 
 const CoinInfo = (props) => {
    const {Name, Logo, Description, Price, MarketCap, Date, Website, Twitter, Telegram, Symbol, BSC, Ethereum, Solana, ContractAddress} = props.data;
+
+   const ID = props.coinId
+   console.log("coinId", ID)
    const launch = Date && Date.toDate().toDateString();
    function returnChain(){
     if (BSC){
