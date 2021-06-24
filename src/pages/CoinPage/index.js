@@ -28,7 +28,7 @@ const CoinPage = ({match, location}) => {
         <>
             <NavigationBar />
             <Container className="mt-5" style={{minHeight: "100vh"}}>  
-                <CoinInfo data={coinInfo}/>
+                <CoinInfo data={coinInfo} coinId={coinId}/>
             </Container>
             <Leaderboard  promoted="True" searchText=''/>
             <Footer />
