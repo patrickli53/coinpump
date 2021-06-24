@@ -18,7 +18,7 @@ const LeaderboardWithTabs = () => {
 
     return (
         <div>
-            <input type="text" onChange={handleSearch} placeholder="Search Coin" />
+            <input className="search "type="text" onChange={handleSearch} placeholder="Search Coin" />
             <Tabs
             id="leaderboardTabs"
             activeKey={key}

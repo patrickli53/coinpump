@@ -45,6 +45,9 @@ const CoinInfo = (props) => {
                             <Card.Body className='desc'>
                                 {Description}
                             </Card.Body>
+                            <Card.Footer>
+                                
+                            </Card.Footer>
                         </Card>
                     </Col>
                     <Col lg='4'>
