@@ -28,3 +28,25 @@
     color: white!important;
     text-align: center;
 }
+
+.symbol{
+    color: #EF0C63;
+}
+
+.header{
+    font-size: 2.3rem;
+}
+
+.desc{
+    font-family:NexaLight !important
+}
+
+.subTitle{
+    padding-left:115px;
+    margin-top: -30px;
+    font-size: 1rem!important;
+}
+
+.coinLogo{
+    margin-right: 15px;
+}

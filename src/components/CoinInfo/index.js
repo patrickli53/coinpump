@@ -4,8 +4,20 @@ import { Card, Container, Row, Col, ButtonGroup, Button } from 'react-bootstrap'
 import './styles.css'
 
 const CoinInfo = (props) => {
-   const {Name, Logo, Description, Price, MarketCap, Date, Website, Twitter, Telegram} = props.data;
+   const {Name, Logo, Description, Price, MarketCap, Date, Website, Twitter, Telegram, Symbol, BSC, Ethereum, Solana, ContractAddress} = props.data;
    const launch = Date && Date.toDate().toDateString();
+   function returnChain(){
+    if (BSC){
+        return "BSC";
+    }
+
+    if (Ethereum){
+        return "ETH";
+    }
+    if (Solana){
+        return "SOL";
+    }
+}
     return (
         <>
             <Container>
@@ -14,16 +26,20 @@ const CoinInfo = (props) => {
                         <Card className='mainCard'>
                             <Card.Header>
                             <span> 
+
+                                <Card.Title className="header">                                
                                 <img
                                     src={Logo}
                                     alt="token"
-                                    className="tokenLogo"
-                                />
-                                {Name} 
+                                    width="100"
+                                    className='coinLogo'
+                                />{Name} 	• <span className='symbol'>${Symbol}</span></Card.Title>
+                                <Card.Subtitle className='subTitle'>{returnChain()} {ContractAddress}</Card.Subtitle>
+                               
                             </span>
-                           
+        
                             </Card.Header>
-                            <Card.Body>
+                            <Card.Body className='desc'>
                                 {Description}
                             </Card.Body>
                         </Card>
