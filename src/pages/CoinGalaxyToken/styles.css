@@ -1,0 +1,40 @@
+.galaxyInfo{
+    background-color: #311E57;
+    color: white;
+}
+
+.infoLink{
+    color: white !important;
+}
+
+.galaxyInfo p{
+    font-family: NexaLight;
+}
+
+.galaxyInfo h3{
+    font-family: NexaBold;
+    text-align: center;
+}
+
+.tokenInfoLink{
+    color: #EF0C63 !important;
+    margin-bottom: 1em;
+}
+.tokenomicsicons{
+    color: #EF0C63;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 18px;
+}
+
+.icons{
+    color: #EF0C63;
+}
+
+.tokenomics{
+    background-color: #482c80;
+    border-radius: 10px;
+    height: 300px;
+    margin-bottom: 30px;
+}
