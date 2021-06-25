@@ -81,6 +81,11 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 ip = await publicIp.v4();
             }
 
+            if (ip = null){
+                window.alert("Vote failed.");
+                return;
+            }
+
             var userDoc;
 
             await firestore.collection("IP").where("IP", "==", ip).get().then((querySnapshot) => {
