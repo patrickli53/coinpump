@@ -19,14 +19,14 @@ const Terms = () => {
                         <h3>Last updated: (release date)</h3>
                         
                         <p>
-                        By using coinpump.cc you agree to following all of the terms of service, if you are found 
+                        By using coingalaxy.cc you agree to following all of the terms of service, if you are found 
                         to not be following all of these terms, your account will be restricted with no warning. 
-                        While reading the Terms of Service as well as the rest of the content on coinpump.cc, the
-                        use of the word "we", "us", or "our" refers to coinpump.cc, and the use of "you", refers to
-                        any visitors and/or users of coinpump.cc
+                        While reading the Terms of Service as well as the rest of the content on coingalaxy.cc, the
+                        use of the word "we", "us", or "our" refers to coingalaxy.cc, and the use of "you", refers to
+                        any visitors and/or users of coingalaxy.cc
                         </p>
 
-                        <h3>VOTING ON COINPUMP</h3>
+                        <h3>VOTING ON COINGALAXY</h3>
 
                         <p>
                         You're only allowed to make one vote per token once per 24 hour period, but with that being 
@@ -34,7 +34,7 @@ const Terms = () => {
                         be able to vote for Bitcoin and Ethereum both once, but voting for Bitcoin twice would be 
                         against these terms. (This includes the use of proxies and VPNs to cast multiple votes on a 
                         single token)
-                        Scripts, bots or other automated prgrams are not allowed on coinpump.cc, votes must be casted
+                        Scripts, bots or other automated prgrams are not allowed on coingalaxy.cc, votes must be casted
                         by an individual physically using this site.
                         Selling voting services and the advertising of voting services will not be tolerated and will
                         also result in the restriction of your account.
@@ -47,11 +47,11 @@ const Terms = () => {
                         fan of a token and would like to promote it, you are allowed to do so even if
                         you have no involvment with the creation of the token. With that being said,
                         if the owner of a token makes a complaint of them not wanting a token listed on
-                        coinpump.cc, it will be removed upon their request. 
+                        coingalaxy.cc, it will be removed upon their request. 
                         If there are any problems with the token you have submitted, you will not be 
                         notified of the problems, and will have to make another submission of the token. 
                         If you were to submit any information on a token that may come off as racist, 
-                        sexist, pornographic, or hateful content, you may be restricted from using coinpump.cc
+                        sexist, pornographic, or hateful content, you may be restricted from using coingalaxy.cc
                         without warning. 
                         </p>
 
@@ -59,7 +59,7 @@ const Terms = () => {
                         <h3>TOKENS BEING REMOVED</h3>
 
                         <p>
-                        coinpump.cc has the right to remove a token at any time. 
+                        coingalaxy.cc has the right to remove a token at any time. 
                         We will be lenient with minor problems with a token, but if we were to find out that there
                         is a "rug pull" still listed on the site or a token where sells cannot be initiated, there 
                         will be a lack of leniency whether your token was submitted by the owner, or a person of the 
@@ -75,16 +75,16 @@ const Terms = () => {
                         Payments to promote your token can be made using BNB, BUSD, USDT, ETH, or BTC.
                         If you would like to request a different crypto payment method, feel free to ask 
                         when emailing us to promote your token and we will try to come to a mutual agreement. 
-                        If demand of promoting tokens on coinpump.cc were to rise, We at coinpump.cc reserve the right
+                        If demand of promoting tokens on coingalaxy.cc were to rise, We at coingalaxy.cc reserve the right
                         to change the payment amounts for our services as demand rises. If there were to be a pricing
                         change as a token is currently being promoted, you will not be contacted to pay more than what
                         you paid upon the originial agreement.
                         </p>
 
-                        <h3>COINPUMP PROMOTION</h3>
+                        <h3>COINGALAXY PROMOTION</h3>
 
                         <p>   
-                        Coinpump.cc reserves the right to promote our own token in the promoted section whenever we 
+                        Coingalaxy.cc reserves the right to promote our own token in the promoted section whenever we 
                         please. 
                         We will only be doing so during our launch or big events, this will be announced on our 
                         Twitter and will only be in the promoted section for 2-3 days at a time.
@@ -93,7 +93,7 @@ const Terms = () => {
                         <h3>TERMS OF SERVICE UPDATES</h3>
                         
                         <p> 
-                        Coinpump.cc has the rights to update the terms of service at anytime. 
+                        Coingalaxy.cc has the rights to update the terms of service at anytime. 
                         These changes will be announced on the Twitter and Telegram (Embeded links). We do not plan
                         to make changes that will directly impact the promotion or advertising of the tokens, these 
                         updates will mainly be done to improve the protection of the website and the users of the 
