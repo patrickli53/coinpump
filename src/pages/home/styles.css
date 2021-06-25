@@ -62,4 +62,9 @@ html, body {
     background-color: #6f6189;
     border-radius: 4px;
     border-color: #6f6189;
+    color:white;
+}
+
+.search::placeholder{
+    color: rgba(255, 255, 255, 0.3);
 }

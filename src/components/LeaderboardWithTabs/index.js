@@ -30,8 +30,9 @@ const LeaderboardWithTabs = () => {
                 <Tab eventKey="weekly" title="Weekly">
                     <Leaderboard sortMethod = "weekly" searchText = {searchText}/>
                 </Tab>
+                
             </Tabs>
-
+            
         </div>
     )
 }

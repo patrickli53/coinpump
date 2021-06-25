@@ -56,8 +56,8 @@ const BannerAds = () => {
             <img
                 alt=""
                 src={fileURL}
-                width="400"
-                height="66.24"
+                width="450"
+                height="75"
                 className="d-flex mr-0 ml-auto" 
             />
             </Link>

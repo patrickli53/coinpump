@@ -50,3 +50,13 @@
 .coinLogo{
     margin-right: 15px;
 }
+
+.votingfooter{
+    display:block;
+    margin-left:auto;
+}
+
+.arrow{
+    margin-bottom: 5%;
+    margin-left:10px;
+}

@@ -5,7 +5,8 @@ import Modal from 'react-bootstrap/Modal'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
-import {useAuth} from '../../contexts/AuthContext.js'
+import {useAuth} from '../../contexts/AuthContext.js';
+import {FaArrowUp} from 'react-icons/fa'
 import './styles.css'
 
 const CoinInfo = (props) => {
@@ -222,6 +223,7 @@ const CoinInfo = (props) => {
       setInterval(() => {
           setShow(false)
         }, 3000)   
+    
   }
 
 
@@ -263,8 +265,11 @@ return (
                             <Card.Body className='desc'>
                                 {Description}
                             </Card.Body>
-                            <Card.Footer>
-                                
+                            <Card.Footer className='votingfooter'>
+                                <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
+                                        <Button className='socialButton' onClick={()=> vote()}>Vote</Button>
+                                </OverlayTrigger>
+                                <FaArrowUp className="arrow"/>{totalVotes}
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -288,10 +293,6 @@ return (
                                         <Button className=' socialButton mb-3'><a target="_blank" href={`${Telegram}`}>Telegram</a></Button>
                                         <Button className=' socialButton mb-3'><a target="_blank" href={`${Twitter}`}>Twitter</a></Button>
                                         <Button className='socialButton mb-3' ><a target="_blank" href={`${Website}`}>Website</a></Button>
-                                        
-                                        <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
-                                        <Button className='socialButton' onClick={()=> vote()}>Vote</Button>
-                                        </OverlayTrigger>
                                     </ButtonGroup>
                                 </Card.Body>
                             </Card>

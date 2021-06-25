@@ -5,7 +5,7 @@ import './styles.css'
 const CoinUpdate = () => {
     return (
         <Card className="cardContainer">
-            The coin is launching soon!
+            Find new updates about the coin here!
         </Card>
     )
 }
