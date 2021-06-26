@@ -78,6 +78,6 @@ a{
 }
 
 .table-hover tbody tr:hover {
-    color: white !important;
-    background-color: rgba(0,0,0,.075) ;
+    color: #EF0C63 !important;
+    cursor:pointer;
 }

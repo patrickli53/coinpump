@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import CoinInfo from '../../components/CoinInfo';
 import {auth, firestore, firebase} from '../../components/config/fbConfig';
 import Footer from '../../components/footer';
@@ -28,11 +29,9 @@ const CoinPage = ({match, location}) => {
     return (
         <>
             <NavigationBar />
-            <div style={{minHeight: "100vh"}}>
-                <Container className="mt-5" >  
-                    <CoinInfo data={coinInfo} coinId={coinId}/>
-                    
-                </Container>
+            <div className="mt-5 infoContainer" style={{minHeight: "100vh"}}>
+                <CoinInfo data={coinInfo} coinId={coinId}/>
+                <h2 className='promotedTitle'>Promoted<Link className='promoteLink' to="/promote">Want your coin here?</Link></h2>
                 <div className='promoted'> 
                     <Leaderboard  promoted="True" searchText=''/>
                 </div>

@@ -1,5 +1,13 @@
-.promoted{
-    margin-left:10%;
-    margin-right:10%;
+
+
+.promotedTitle{
+    color:white;
     margin-top: 10%;
+    font-size: 2rem !important;
+}
+
+
+.infoContainer{
+    margin-left:10%;
+    margin-right:10% !important;
 }

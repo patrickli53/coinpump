@@ -243,10 +243,9 @@ function returnChain(){
 
 return (
         <>
-            <Container>
                 <Row>
                     <Col lg='8'>
-                        <Card className='mainCard'>
+                        <Card className='mainCard h-100'>
                             <Card.Header>
                             <span> 
 
@@ -299,9 +298,6 @@ return (
                         </Row>
                     </Col>
                 </Row>
-                
-            </Container>
-           
         </>
     )
 }

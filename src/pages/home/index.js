@@ -7,6 +7,7 @@ import LeaderboardWithTabs from '../../components/LeaderboardWithTabs';
 import { Container, Row, Col } from 'react-bootstrap';
 import './styles.css';
 import CoinUpdate from '../../components/coinUpdates';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -26,7 +27,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 <div className="promotedTable">
-                    <h2>Promoted</h2>
+                    <h2>Promoted<Link className='promoteLink' to="/promote">Want your coin here?</Link></h2>
                     <Leaderboard  promoted="True" searchText=''/>
                 </div>
                 <div className="promotedTable">
