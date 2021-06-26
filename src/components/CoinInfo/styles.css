@@ -43,7 +43,7 @@
 
 .subTitle{
     padding-left:115px;
-    margin-top: -30px;
+    margin-top: -20px;
     font-size: 1rem!important;
 }
 
@@ -53,10 +53,21 @@
 
 .votingfooter{
     display:block;
-    margin-left:auto;
+    text-align:center;
 }
 
 .arrow{
-    margin-bottom: 5%;
+    margin-bottom: 6px;
     margin-left:10px;
+}
+
+.footerInfo{
+    margin-top:5px;
+    font-family: NexaLight;
+    text-align:center;
+    display:block;
+}
+
+.footerEmail{
+    color: #EF0C63
 }

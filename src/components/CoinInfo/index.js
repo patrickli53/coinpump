@@ -265,10 +265,14 @@ return (
                                 {Description}
                             </Card.Body>
                             <Card.Footer className='votingfooter'>
+                                
                                 <OverlayTrigger show={show} onToggle={toggle} overlay={popover}>
                                         <Button className='socialButton' onClick={()=> vote()}>Vote</Button>
                                 </OverlayTrigger>
                                 <FaArrowUp className="arrow"/>{totalVotes}
+                                <div className='footerInfo'>
+                                    Information incorrect? Please report to <span className='footerEmail'>info@coingalaxy.com</span>
+                                </div>
                             </Card.Footer>
                         </Card>
                     </Col>
