@@ -3,36 +3,43 @@ import NavigationBar from '../../components/navbar'
 import { InputGroup, Container, Row, Col, Card } from 'react-bootstrap'
 import Footer from '../../components/footer';
 import {FaRegQuestionCircle} from 'react-icons/fa'
+import adv from '../../Vectoradv.png';
 import './styles.css';
 const Promote = () => {
     return (
         <div  >
             <NavigationBar/>
             <div style={{minHeight: "100vh"}}>
-                <Container className="d-flex align-items-center justify-content-center mt-5" style={{minHeight: "20vh"}}>
-                    <Row>
-                        <Col>
-                            <Card className="promoCard">
+                <Container className="align-items-center justify-content-center mt-5" style={{minHeight: "20vh"}}>
+                    <Card className="promoCard">
                                 <Card.Body>
                                     <div>
-                                    <h2>Advertising and promotions</h2>
+                                        <span>
+                                        <img
+                                            src={adv}
+                                            alt="token"
+                                            width="100"
+                                            className='cardPhoto'
+                                        />
+                                            <h2>Advertising and promotions</h2>
 
-                                    <p1>
-                                    Would you like your project to be promoted on coingalaxy.cc to be seen by thousands of
-                                    potential investors? Please contact us through the email provided below to find out prices 
-                                    and information, you should receive a response within 24 hours.
-                                    </p1>
+                                            <p1>
+                                            Would you like your project to be promoted on coingalaxy.cc to be seen by thousands of
+                                            potential investors? Please contact us through the email provided below to find out prices 
+                                            and information, you should receive a response within 24 hours.
+                                            </p1>
+                                        </span>
                                     </div>
+                                    
 
                                 </Card.Body>
                             </ Card>
-                        </Col>
-                        <Col>
-                            <Card className="promoCard">
+
+                            <Card className="promoCard mt-5">
                                 <Card.Body>
                                     <div>
-                                    
-                                    <h2><FaRegQuestionCircle />General Inquiries </h2>
+                                    <FaRegQuestionCircle className='inqicon' size={100}/>
+                                    <h2>General Inquiries </h2>
 
                                     <p1>
                                     If you have any general inquiries about the site, please contact us through the email provided below.
@@ -43,9 +50,6 @@ const Promote = () => {
                                     </div>
                                 </Card.Body>
                             </ Card>
-                        </Col>
-                    </Row>
-                   
                 </Container>
             </div>
             
