@@ -81,10 +81,10 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             }catch{
                 ip = await publicIp.v4();
             }
-            
+
             if (!ip){
-                window.alert("Vote failed.");
-                console.log("Failed to get IP, please log in to vote")
+                window.alert("Failed to get IP, please log in to vote.");
+                console.log("Failed to get IP, please log in to vote.")
                 return;
             }
 
