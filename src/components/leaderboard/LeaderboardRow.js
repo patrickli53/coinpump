@@ -100,6 +100,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 // Checks if user is verified
                 if (userDoc.data().Verified == false){
                     // Put code for captcha here ****
+                    await setUserID(userDoc.id);
                     handleShow();
                     return;
                 }
