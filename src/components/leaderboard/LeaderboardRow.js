@@ -36,6 +36,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const handleClose = () => setShowModal(false)
     const handleShow = () => setShowModal(true)
     const recaptchaRef = React.createRef();
+    const [emailVerified, setEmailVerified] = useState(false)
 
     const notABot = event => {
         console.log("Updating verified for: ", userID)
@@ -55,6 +56,13 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     }, err => {
         console.log('Observer error: ${err}');
     });
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user){
+            setEmailVerified(user.emailVerified)
+            console.log("Email verified updated for ", user.email, " to ", user.emailVerified)
+        }
+    })
 
     const increment = firebase.firestore.FieldValue.increment(1);
 
@@ -83,6 +91,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
 
             if (ip = null){
                 window.alert("Vote failed.");
+                console.log("Failed to get IP, please log in to vote")
                 return;
             }
 
@@ -165,7 +174,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
         // Gets date of last from database
         const doc = await firestore.collection("users").doc(userInformation.currentUser.uid).get();
         
-        const emailVerified = await userInformation.currentUser.emailVerified;
+        setEmailVerified(userInformation.currentUser.emailVerified);
 
         // Checks if email is verified
         if (!(emailVerified)){

@@ -244,6 +244,18 @@ function returnChain(){
 
 return (
         <>
+                <Modal show={showModal} onHide={handleClose}> 
+                    <Modal.Header closeButton>
+                    <Modal.Title>Please fill the Captcha</Modal.Title>
+                    </Modal.Header>
+                    <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey="6LeB0i8bAAAAACKmpvuZYi9YBn41gd2nfJIUJJTx"
+                        render="explicit"
+                        onChange={notABot}
+                        />    
+                </Modal>
+
                 <Row>
                     <Col lg='8'>
                         <Card className='mainCard h-100'>
