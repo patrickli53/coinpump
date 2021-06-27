@@ -57,13 +57,6 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
         console.log('Observer error: ${err}');
     });
 
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user){
-            setEmailVerified(user.emailVerified)
-            console.log("Email verified updated for ", user.email, " to ", user.emailVerified)
-        }
-    })
-
     const increment = firebase.firestore.FieldValue.increment(1);
 
     // Increments votes by 1 on server
@@ -88,8 +81,8 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             }catch{
                 ip = await publicIp.v4();
             }
-
-            if (ip = null){
+            
+            if (!ip){
                 window.alert("Vote failed.");
                 console.log("Failed to get IP, please log in to vote")
                 return;
