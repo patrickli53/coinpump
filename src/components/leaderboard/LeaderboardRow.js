@@ -13,7 +13,6 @@ import {AiOutlineLineChart} from 'react-icons/ai'
 // doc - doc of token
 // index - tokens number on list
 // sortMethod - Stores which type of votes leaderboard is sorted by
-
 const LeaderboardRow = ({ doc, index, sortMethod }) => {
     // Gets values from doc
     const id = doc.id;
@@ -25,7 +24,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const age = ((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0);
     const contractAddress = doc.ContractAddress;
     const userInformation = useAuth();
-  
+    
     const [totalVotes, setVotes] = useState(votes)
     const [totalWeeklyVotes, setWeeklyVotes] = useState(weeklyVotes)
     const [show, setShow] = useState(false)
@@ -36,7 +35,6 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const handleClose = () => setShowModal(false)
     const handleShow = () => setShowModal(true)
     const recaptchaRef = React.createRef();
-    const [emailVerified, setEmailVerified] = useState(false)
 
     const notABot = event => {
         console.log("Updating verified for: ", userID)
@@ -46,9 +44,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
         );
         handleClose()
      }
-
     const publicIp = require('public-ip')
-
      // Observes vote field for live update 
     const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
         setVotes(docSnapshot.data().Votes)
@@ -56,9 +52,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     }, err => {
         console.log('Observer error: ${err}');
     });
-
     const increment = firebase.firestore.FieldValue.increment(1);
-
     // Increments votes by 1 on server
     const incrementVotes = async() => {
         await firestore.collection("Coins").doc(id).update({
@@ -69,28 +63,23 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             console.error("Error updating document: ", error);
         });
     }
-
     // Updates time when user voted on database
     const vote = async() => {
         // Checks if user is logged in
         var ip;
-
         if (userInformation.currentUser == null){
             try {
                 ip = await publicIp.v6();
             }catch{
                 ip = await publicIp.v4();
             }
-
             if (!ip){
                 console.log("Failed to get IP, please log in to vote.")
                 setError("Failed to get IP, please log in to vote.");
                 setShow()
                 return;
             }
-
             var userDoc;
-
             await firestore.collection("IP").where("IP", "==", ip).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     userDoc = doc;
@@ -98,7 +87,6 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                     console.log("Setting verified to", userDoc.data().Verified)
                 });    
             });
-
             if (userDoc){
                 // Checks if user is verified
                 if (userDoc.data().Verified == false){
@@ -107,12 +95,9 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                     handleShow();
                     return;
                 }
-
                 console.log("UserID being set to: ", userDoc.id)
                 setUserID(userDoc.id);
-
                 var lastVoteDate = userDoc.data().tokens.[id];
-
                 // gets todays date
                 var today = new Date();
                 var dd = String(today.getDate()).padStart(2, '0');
@@ -158,25 +143,21 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 }).then(function(docRef){
                     setUserID(docRef.id)
                 });
-
                 handleShow();
             }
-
             return;
         }
         
         // Gets date of last from database
         const doc = await firestore.collection("users").doc(userInformation.currentUser.uid).get();
         
-        setEmailVerified(userInformation.currentUser.emailVerified);
-
+        const emailVerified = await userInformation.currentUser.emailVerified;
         // Checks if email is verified
         if (!(emailVerified)){
             setError("Your email must be verified to vote.");
             setShow(true);
             return;
         }
-
         if (!doc.data().tokens){
             // token map does not exist, create it
             await firestore.collection("users").doc(userInformation.currentUser.uid).set({
@@ -184,21 +165,16 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 tokens: {}
             }, {merge: true}
             );
-
             console.log("[ERROR]: User did not have tokens map in document, map created");
         }
-
         var lastVoteDate = doc.data().tokens.[id];
-
         // gets todays date
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); 
         var yyyy = today.getFullYear();
         today = mm + '/' + dd + '/' + yyyy;
-
         // TODO: Check that tokens map exists in user document
-
         if (lastVoteDate){
             // Allow vote if user has not voted today
             if (lastVoteDate != today){
@@ -213,20 +189,17 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 setError("You can only vote once every 24 hours.")
                 setShow(true)
             }
-
         }else{
             // If user has not voted yet, create a new entry for the token
             await firestore.collection("users").doc(userInformation.currentUser.uid).set({
                 tokens: { [id]: today}
             }, {merge: true}
             );
-
             setVotes(totalVotes+1);
             setWeeklyVotes(totalWeeklyVotes+1);
             incrementVotes();
         }
     }
-
     const popover = (
         <Popover id="popover-basic">
           <Popover.Content>
@@ -243,12 +216,10 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const handleRowClick=() => {
         history.push(`/coin/${id}`)
     }
-
     function returnChain(){
         if (doc.BSC){
             return "BSC";
         }
-
         if (doc.Ethereum){
             return "ETH";
         }
@@ -256,7 +227,6 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             return "SOL";
         }
     }
-
     function returnVotes(){
         if (sortMethod == "weekly"){
             return totalWeeklyVotes;
@@ -264,7 +234,6 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             return totalVotes;
         }
     }
-
     return (
         <>
         <Modal show={showModal} onHide={handleClose}> 
@@ -278,9 +247,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             onChange={notABot}
             />    
         </Modal>
-
             <tr>
-
                 <td onClick={()=> handleRowClick()}>{index+1}</td>
                 <td onClick={()=> handleRowClick()}>
                     <img
@@ -306,6 +273,4 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
         </>
     )
 }
-
 export default LeaderboardRow
- 
