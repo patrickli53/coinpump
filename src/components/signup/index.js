@@ -129,9 +129,10 @@ const SignUp = () => {
                         <h2 className="text-center mb-4">Verification Email Sent</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
                             <div>
-                                <h className="text-center mb-4">Please check inbox your inbox.</h>
+                                <h className="text-center mb-4">Please check inbox your inbox. Please wait a few seconds if voting doesn't work</h>
                                 <div>
                                     <button disabled={loading} className="w-100" onClick={() => {verification()}}>Resend</button>
+                                    <a href="/" >Back to home</a>
                                 </div>
                             </div>
                     </Card.Body>
