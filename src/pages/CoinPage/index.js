@@ -14,7 +14,7 @@ const CoinPage = ({match, location}) => {
     
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [coinId]);
     async function fetchData() {
             await firestore.collection("Coins").doc(`${coinId}`).get().then((doc) => {
                 if (doc.exists) {

@@ -33,7 +33,7 @@ function App() {
           <Route path='/signup' component={SignUpPage}/>
           <Route path='/resetPassword' component={passwordReset}/>
           <Route path='/coingalaxytoken' component={CoinGalaxyToken}/>
-          <Route path="/coin/:coinId" component={CoinPage}/>
+          <Route exact path="/coin/:coinId" component={CoinPage}/>
 
         </Switch>
       </Router>
