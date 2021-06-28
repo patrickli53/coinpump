@@ -83,8 +83,9 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             }
 
             if (!ip){
-                window.alert("Failed to get IP, please log in to vote.");
                 console.log("Failed to get IP, please log in to vote.")
+                setError("Failed to get IP, please log in to vote.");
+                setShow()
                 return;
             }
 
