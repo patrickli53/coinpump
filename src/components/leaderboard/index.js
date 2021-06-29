@@ -8,16 +8,14 @@ import LeaderboardRow from './LeaderboardRow';
 import { Button } from 'react-bootstrap';
 
 const Leaderboard = ({sortMethod, promoted, searchText}) => {
-    const [leaderboard, setLeaderboard] = useState([])
-    const [loadAll, setLoadAll] = useState(false)
+    const [leaderboard, setLeaderboard] = useState([]);
+    const [lastCoin, setLastCoin] = useState(10);
+    const [isEmpty, setIsEmpty] = useState(false);
+
     useEffect(() => {
         fetchData();
     }, []);
-    useEffect(() => {
-        if(searchText != ""){
-            setLoadAll(true)
-        }
-    }, [searchText]);
+  
     
     async function fetchData() {
         console.log(promoted)
@@ -63,10 +61,23 @@ const Leaderboard = ({sortMethod, promoted, searchText}) => {
 
 
     const renderLeaderboardRows = () => {
-        if(searchText == "" || !loadAll){
-            return leaderboard.slice(0,20).map((doc, index)=>{
+        if(searchText == ""){
+            return leaderboard.slice(0,lastCoin).map((doc, index)=>{
                 // Adds coin only if its approved by admin
                     return (
+                        
+                        // <LeaderboardRow 
+                        //     alert={alert} 
+                        //     id={doc.id} 
+                        //     index={index} 
+                        //     name={doc.Name} 
+                        //     marketcap={doc.MarketCap} 
+                        //     age={((Date.now() - doc.Date.toDate())/(1000*24*60*60)).toFixed(0)} 
+                        //     votes={doc.Votes}  weeklyVotes={doc.WeeklyVotes}
+                        //     logo = {doc.Logo}
+                        //     contractAddress = {doc.ContractAddress}
+                        // />
+    
                         <LeaderboardRow 
                             doc={doc}
                             index={index} 
@@ -98,20 +109,27 @@ const Leaderboard = ({sortMethod, promoted, searchText}) => {
                         //     logo = {doc.Logo}
                         //     contractAddress = {doc.ContractAddress}
                         // />
-    
+
                         <LeaderboardRow 
                             doc={doc}
                             index={index} 
                             sortMethod={sortMethod}
                         />
                     )
-            })
+            })}
+            
+    }
+    const loadMore = () => {
+        if(lastCoin >= leaderboard.length){
+            setIsEmpty(true)
+        }else{
+            setLastCoin(lastCoin+10);
         }
     }
 
     const renderLoadButton = () => {
-        if (!promoted && !loadAll){
-            return <Button onClick={()=>setLoadAll(true)}>Load all coins</Button>
+        if (!promoted){
+            return <Button onClick={loadMore}>Load more coins</Button>
         }
         else if(promoted){
             
@@ -140,7 +158,8 @@ const Leaderboard = ({sortMethod, promoted, searchText}) => {
                 </tbody>
             </Table>
             <div>
-                {renderLoadButton()}
+                {!isEmpty && renderLoadButton()}
+                {isEmpty && <p>All coins loaded.</p>}
             </div>
         </div>
     )
