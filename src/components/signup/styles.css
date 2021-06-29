@@ -6,3 +6,13 @@
 .login{
     color:white;
 }
+
+.resendButton{
+    background-color: #EF0C63 !important;
+    border-color: #EF0C63 !important;
+}
+
+.backtohome{
+    text-align: center;
+    display: block;
+}

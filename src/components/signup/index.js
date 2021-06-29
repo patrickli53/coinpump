@@ -131,8 +131,8 @@ const SignUp = () => {
                             <div>
                                 <h className="text-center mb-4">Please check inbox your inbox. Please wait a few seconds if voting doesn't work</h>
                                 <div>
-                                    <button disabled={loading} className="w-100" onClick={() => {verification()}}>Resend</button>
-                                    <a href="/" >Back to home</a>
+                                    <button disabled={loading} className="w-100 mt-3 mb-3 resendButton" onClick={() => {verification()}}>Resend</button>
+                                    <a className='backtohome' href="/" >Back to home</a>
                                 </div>
                             </div>
                     </Card.Body>
