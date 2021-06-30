@@ -276,7 +276,7 @@ return (
                                     alt="token"
                                     width="100"
                                     className='coinLogo'
-                                />{Name} 	• <span className='symbol'>${Symbol}</span></Card.Title>
+                                />{Name} 	• <span className='symbol'>{Symbol}</span></Card.Title>
                                 <Card.Subtitle className='subTitle'>{returnChain()} {ContractAddress}</Card.Subtitle>
                                
                             </span>
