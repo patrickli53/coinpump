@@ -31,7 +31,7 @@ const CoinInfo = (props) => {
    const publicIp = require('public-ip')
 
    const notABot = event => {
-    console.log("Updating verified for: ", userID)
+    
     firestore.collection("IP").doc(userID).set({
         Verified: true
     }, {merge: true}
@@ -44,7 +44,7 @@ const CoinInfo = (props) => {
       setVotes(docSnapshot.data().Votes)
       setWeeklyVotes(docSnapshot.data().WeeklyVotes)
   }, err => {
-      console.log('Observer error: ${err}');
+      
   });
 
   const increment = firebase.firestore.FieldValue.increment(1);
@@ -75,7 +75,7 @@ const CoinInfo = (props) => {
 
         if (!ip){
             // window.alert("Failed to get IP, please log in to vote.");
-            console.log("Failed to get IP, please log in to vote.")
+            
             setError("Failed to get IP, please log in to vote.");
             setShow()
             return;
@@ -87,7 +87,7 @@ const CoinInfo = (props) => {
               querySnapshot.forEach((doc) => {
                   userDoc = doc;
                   setVerified(userDoc.data().Verified);
-                  console.log("Setting verified to", userDoc.data().Verified)
+                  
               });    
           });
 
@@ -100,7 +100,7 @@ const CoinInfo = (props) => {
                   return;
               }
 
-              console.log("UserID being set to: ", userDoc.id)
+              
               setUserID(userDoc.id);
 
               var lastVoteDate = userDoc.data().tokens.[id];
@@ -142,7 +142,7 @@ const CoinInfo = (props) => {
           
           }else{
               // Create doc
-              console.log("User does not exist, creating");
+              
               firestore.collection("IP").add({
                   IP: ip,
                   tokens: {},
@@ -177,11 +177,11 @@ const CoinInfo = (props) => {
           }, {merge: true}
           );
 
-          console.log("[ERROR]: User did not have tokens map in document, map created");
+          
       }
 
       var lastVoteDate = doc.data().tokens.[id];
-      console.log(lastVoteDate)
+      
 
       // gets todays date
       var today = new Date();
