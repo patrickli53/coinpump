@@ -16,6 +16,7 @@ import passwordReset from './pages/login/resetPassword'
 import TermsOfService from './pages/terms'
 import CoinGalaxyToken from './pages/CoinGalaxyToken'
 import CoinPage from './pages/CoinPage';
+import PageNotFound from './pages/pageNotFound'
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
           <Route path='/resetPassword' component={passwordReset}/>
           <Route path='/coingalaxytoken' component={CoinGalaxyToken}/>
           <Route exact path="/coin/:coinId" component={CoinPage}/>
+          <Route path="/pagenotfound" component={PageNotFound} />
+          <Route path="*" component={PageNotFound} />
 
         </Switch>
       </Router>

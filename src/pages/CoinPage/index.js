@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CoinInfo from '../../components/CoinInfo';
 import {auth, firestore, firebase} from '../../components/config/fbConfig';
 import Footer from '../../components/footer';
@@ -11,18 +11,18 @@ import './styles.css';
 const CoinPage = ({match, location}) => {
     const {params: {coinId} } = match
     const [coinInfo, setCoinInfo] = useState({})
-    
+    const history = useHistory()
+
     useEffect(() => {
         fetchData();
     }, [coinId]);
     async function fetchData() {
             await firestore.collection("Coins").doc(`${coinId}`).get().then((doc) => {
                 if (doc.exists) {
-                    
                     setCoinInfo(doc.data())
                 } else {
                     // doc.data() will be undefined in this case
-                    
+                    history.push('/pagenotfound')
                 }
             })
         }

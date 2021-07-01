@@ -5,11 +5,13 @@ import Modal from 'react-bootstrap/Modal'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import {auth, firestore, firebase} from '../config/fbConfig';
+import { Link, useHistory } from 'react-router-dom'
 import {useAuth} from '../../contexts/AuthContext.js';
 import {FaArrowUp} from 'react-icons/fa'
 import './styles.css'
 
 const CoinInfo = (props) => {
+
    const {Name, Logo, Description, Price, MarketCap, Website, Twitter, Telegram, Votes, WeeklyVotes, Symbol, BSC, Ethereum, Solana,ContractAddress} = props.data;
    const date = props.data.Date;
 
@@ -41,8 +43,10 @@ const CoinInfo = (props) => {
 
    // Observes vote field for live update 
   const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
-      setVotes(docSnapshot.data().Votes)
-      setWeeklyVotes(docSnapshot.data().WeeklyVotes)
+      if (docSnapshot.exists){
+        setVotes(docSnapshot.data().Votes)
+        setWeeklyVotes(docSnapshot.data().WeeklyVotes)
+      }
   }, err => {
       
   });
