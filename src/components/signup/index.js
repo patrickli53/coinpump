@@ -39,11 +39,11 @@ const SignUp = () => {
     const verification = async () => {
         
         var user = firebase.auth().currentUser;
-        console.log("Resending verification to ", user.email)
+        
         user.sendEmailVerification().then(function(){
           
         }).catch(function(error){
-          console.log(error)
+          
         });
 
       }
@@ -66,7 +66,7 @@ const SignUp = () => {
           setError("")
           setLoading(true)
           await signup(emailRef.current.value, passwordRef.current.value).then((credential) => {
-              console.log('credential', credential);              
+                           
               const user = credential.user;
               verification() //sends the email verification
               generateUserDocument(user)

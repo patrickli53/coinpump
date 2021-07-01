@@ -20,8 +20,7 @@ const Promoted = () => {
                     let coinData = doc.data();
                     coinData.id = doc.id;
                     setPromotedCoins(promotedCoins => [...promotedCoins, coinData]);
-                    console.log(doc.id, " => promo", doc.data());
-                    console.log("omar");
+                    
                 }
             });
         })
@@ -30,7 +29,7 @@ const Promoted = () => {
     const searchText = 't'
 
     const renderPromoRows = () => {
-        console.log(promotedCoins)
+        
 
             return promotedCoins.filter(r=>{
                 if(!searchText.trim()){

@@ -18,7 +18,7 @@ const BannerAds = () => {
     }, []);
 
     useEffect(() => {
-        console.log("LinkUseEffect: ", link)
+        
     }, [link]);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const BannerAds = () => {
             querySnapshot.forEach((doc) => {
                 
                 if (doc.data().id == index){
-                    console.log("ID: ", doc.id);
+                    
                     const getLink = doc.data().Link;
                     const getFileName = doc.data().FileName;
 

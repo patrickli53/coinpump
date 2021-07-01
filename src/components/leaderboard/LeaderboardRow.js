@@ -37,7 +37,6 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
     const recaptchaRef = React.createRef();
 
     const notABot = event => {
-        console.log("Updating verified for: ", userID)
         firestore.collection("IP").doc(userID).set({
             Verified: true
         }, {merge: true}
@@ -50,7 +49,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
         setVotes(docSnapshot.data().Votes)
         setWeeklyVotes(docSnapshot.data().WeeklyVotes)
     }, err => {
-        console.log('Observer error: ${err}');
+        
     });
     const increment = firebase.firestore.FieldValue.increment(1);
     // Increments votes by 1 on server
@@ -74,7 +73,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 ip = await publicIp.v4();
             }
             if (!ip){
-                console.log("Failed to get IP, please log in to vote.")
+                
                 setError("Failed to get IP, please log in to vote.");
                 setShow()
                 return;
@@ -84,7 +83,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 querySnapshot.forEach((doc) => {
                     userDoc = doc;
                     setVerified(userDoc.data().Verified);
-                    console.log("Setting verified to", userDoc.data().Verified)
+                    
                 });    
             });
             if (userDoc){
@@ -95,7 +94,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                     handleShow();
                     return;
                 }
-                console.log("UserID being set to: ", userDoc.id)
+                
                 setUserID(userDoc.id);
                 var lastVoteDate = userDoc.data().tokens.[id];
                 // gets todays date
@@ -135,7 +134,7 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
             
             }else{
                 // Create doc
-                console.log("User does not exist, creating");
+                
                 firestore.collection("IP").add({
                     IP: ip,
                     tokens: {},
@@ -165,7 +164,6 @@ const LeaderboardRow = ({ doc, index, sortMethod }) => {
                 tokens: {}
             }, {merge: true}
             );
-            console.log("[ERROR]: User did not have tokens map in document, map created");
         }
         var lastVoteDate = doc.data().tokens.[id];
         // gets todays date

@@ -18,7 +18,7 @@ const Leaderboard = ({sortMethod, promoted, searchText}) => {
   
     
     async function fetchData() {
-        console.log(promoted)
+        
         if (promoted == "true" || promoted == "True"){
             await firestore.collection("Coins").orderBy("Votes", "desc").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -33,7 +33,7 @@ const Leaderboard = ({sortMethod, promoted, searchText}) => {
             return;
         }
 
-        console.log(sortMethod)
+        
         if (sortMethod == "weekly"){
             await firestore.collection("Coins").orderBy("WeeklyVotes", "desc").get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {

@@ -23,7 +23,7 @@ const google = new firebase.auth.GoogleAuthProvider();
 export const generateUserDocument = async (user) => {
   const userRef = firestore.doc(`users/${user.uid}`);
   const snapshot =  await userRef.get();
-  console.log("omar" , snapshot)
+  
 
   if (!snapshot.exists){
     const { email } = user;
@@ -33,7 +33,7 @@ export const generateUserDocument = async (user) => {
         tokens: {}
       });
     } catch (error) {
-      console.log(error);
+      
     }
   }
   return getUserDocument(user.uid)
@@ -47,7 +47,7 @@ const getUserDocument = async (uid) => {
     const userDocument = await firestore.doc(`users/${uid}`).get();
     return {uid, ...userDocument.data()};
   } catch(error) {
-      console.log(error);
+      
   }
   }
   

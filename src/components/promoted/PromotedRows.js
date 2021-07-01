@@ -19,7 +19,7 @@ const PromotedRow = ({id, name, age, marketcap, votes, weeklyVotes, index}) => {
     const votesObserver = firestore.collection("Coins").doc(id).onSnapshot(docSnapshot => {
         setVotes(docSnapshot.data().Votes)
     }, err => {
-        console.log('Observer error: ${err}');
+        
     });
         
     const increment = firebase.firestore.FieldValue.increment(1);
@@ -69,7 +69,7 @@ const PromotedRow = ({id, name, age, marketcap, votes, weeklyVotes, index}) => {
             }, {merge: true}
             );
 
-            console.log("[ERROR]: User did not have tokens map in document, map created");
+            
         }
 
         var lastVoteDate = doc.data().tokens.[id];

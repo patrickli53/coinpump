@@ -18,11 +18,11 @@ const CoinPage = ({match, location}) => {
     async function fetchData() {
             await firestore.collection("Coins").doc(`${coinId}`).get().then((doc) => {
                 if (doc.exists) {
-                    console.log("Document data:", doc.data());
+                    
                     setCoinInfo(doc.data())
                 } else {
                     // doc.data() will be undefined in this case
-                    console.log("No such document!");
+                    
                 }
             })
         }

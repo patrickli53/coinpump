@@ -20,7 +20,7 @@ const NavigationBar = () => {
         const galaxyCoinPriceObserver = firestore.collection("Information").doc("GalaxyCoin").onSnapshot(docSnapshot => {
             setGalaxyCoinPrice(docSnapshot.data().price);
     }, err => {
-        console.log('Observer error: ${err}');
+        
     });
 
     const logInButton = () => {
