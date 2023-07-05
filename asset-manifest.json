@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/coinpump/static/css/main.bfc1a70b.chunk.css",
+    "main.js": "/coinpump/static/js/main.dd63e08b.chunk.js",
+    "main.js.map": "/coinpump/static/js/main.dd63e08b.chunk.js.map",
+    "runtime-main.js": "/coinpump/static/js/runtime-main.6eba310e.js",
+    "runtime-main.js.map": "/coinpump/static/js/runtime-main.6eba310e.js.map",
+    "static/css/2.83681c71.chunk.css": "/coinpump/static/css/2.83681c71.chunk.css",
+    "static/js/2.ed8d5344.chunk.js": "/coinpump/static/js/2.ed8d5344.chunk.js",
+    "static/js/2.ed8d5344.chunk.js.map": "/coinpump/static/js/2.ed8d5344.chunk.js.map",
+    "index.html": "/coinpump/index.html",
+    "static/css/2.83681c71.chunk.css.map": "/coinpump/static/css/2.83681c71.chunk.css.map",
+    "static/css/main.bfc1a70b.chunk.css.map": "/coinpump/static/css/main.bfc1a70b.chunk.css.map",
+    "static/js/2.ed8d5344.chunk.js.LICENSE.txt": "/coinpump/static/js/2.ed8d5344.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/coinpump/static/media/Nexa_Light.2bac835e.otf",
+    "static/media/styles.css": "/coinpump/static/media/galaxy-3607885.6ffa8f0b.jpg",
+    "static/media/logo-dark.cdef5096.png": "/coinpump/static/media/logo-dark.cdef5096.png",
+    "static/media/telegramLogo.05554ef1.png": "/coinpump/static/media/telegramLogo.05554ef1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6eba310e.js",
+    "static/css/2.83681c71.chunk.css",
+    "static/js/2.ed8d5344.chunk.js",
+    "static/css/main.bfc1a70b.chunk.css",
+    "static/js/main.dd63e08b.chunk.js"
+  ]
+}
